@@ -7,8 +7,8 @@ import type { FC } from 'react';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
-  { href: '/process', label: 'Production Process' },
-  { href: '/quality', label: 'Product Quality' },
+  // { href: '/process', label: 'Production Process' }, // Removed
+  // { href: '/quality', label: 'Product Quality' }, // Removed
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' },
 ];
