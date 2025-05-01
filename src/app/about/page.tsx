@@ -17,7 +17,7 @@ const OurStory = () => (
     </div>
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
-        src="https://picsum.photos/800/600?random=4"
+        src="./resources/images/test.jpg"
         alt="Factory Interior"
         layout="fill"
         objectFit="cover"
