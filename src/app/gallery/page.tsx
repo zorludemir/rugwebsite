@@ -2,15 +2,15 @@ import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const galleryItems = [
-  { id: 1, category: 'rugs', src: 'https://picsum.photos/800/600?random=12', alt: 'Custom Printed Rug 1', aiHint: 'detailed printed rug pattern' },
-  { id: 2, category: 'towels', src: 'https://picsum.photos/800/600?random=13', alt: 'Custom Printed Towel 1', aiHint: 'beach towel design print' },
-  { id: 3, category: 'blankets', src: 'https://picsum.photos/800/600?random=14', alt: 'Custom Printed Blanket 1', aiHint: 'photo collage blanket print' },
-  { id: 4, category: 'rugs', src: 'https://picsum.photos/800/600?random=15', alt: 'Custom Printed Rug 2', aiHint: 'logo printed rug corporate' },
-  { id: 5, category: 'towels', src: 'https://picsum.photos/800/600?random=16', alt: 'Custom Printed Towel 2', aiHint: 'sports team towel print' },
-  { id: 6, category: 'blankets', src: 'https://picsum.photos/800/600?random=17', alt: 'Custom Printed Blanket 2', aiHint: 'artistic design blanket print' },
-  { id: 7, category: 'rugs', src: 'https://picsum.photos/800/600?random=18', alt: 'Custom Printed Rug 3', aiHint: 'childrens room rug design' },
-  { id: 8, category: 'towels', src: 'https://picsum.photos/800/600?random=19', alt: 'Custom Printed Towel 3', aiHint: 'monogrammed bath towel' },
-  { id: 9, category: 'blankets', src: 'https://picsum.photos/800/600?random=20', alt: 'Custom Printed Blanket 3', aiHint: 'landscape photo blanket print' },
+  { id: 1, category: 'rugs', src: '/dino2.png', alt: 'Custom Printed Rug 1', aiHint: 'detailed printed rug pattern' },
+  { id: 2, category: 'rugs', src: '/customdoor2.png', alt: 'Custom Printed Towel 1', aiHint: 'beach towel design print' },
+  { id: 3, category: 'rugs', src: '/animal3.png', alt: 'Custom Printed Blanket 1', aiHint: 'photo collage blanket print' },
+  { id: 4, category: 'rugs', src: '/hugecity2.png', alt: 'Custom Printed Rug 2', aiHint: 'logo printed rug corporate' },
+  { id: 5, category: 'rugs', src: '/retro14.png', alt: 'Custom Printed Towel 2', aiHint: 'sports team towel print' },
+  { id: 6, category: 'rugs', src: '/retro33.png', alt: 'Custom Printed Blanket 2', aiHint: 'artistic design blanket print' },
+  { id: 7, category: 'rugs', src: '/retro51.png', alt: 'Custom Printed Rug 3', aiHint: 'childrens room rug design' },
+  { id: 8, category: 'rugs', src: '/winterplay1.png', alt: 'Custom Printed Towel 3', aiHint: 'monogrammed bath towel' },
+  { id: 9, category: 'rugs', src: '/poker3.png', alt: 'Custom Printed Blanket 3', aiHint: 'landscape photo blanket print' },
 ];
 
 const categories = [

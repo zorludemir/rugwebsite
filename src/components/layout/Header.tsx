@@ -14,14 +14,14 @@ const navLinks = [
 const Header: FC = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-24 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Printer className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg">PrintCraft Showcase</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium flex-grow">
+        <nav className="hidden md:flex items-center space-x-6 text-lr font-medium flex-grow">
           {navLinks.map((link) => (
             <Link
               key={link.href}
