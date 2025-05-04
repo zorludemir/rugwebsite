@@ -6,19 +6,34 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-b from-card to-background">
-        <div className="container text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-primary">
-            Custom Printing, Crafted for You
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            High-quality, personalized printing on rugs, towels, and blankets. Bring your designs to life with PrintCraft Showcase.
-          </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-            <Link href="/gallery">View Our Work</Link>
-          </Button>
-        </div>
-      </section>
+      <section className="relative py-20 md:py-32 overflow-hidden">
+  {/* Blur ve karartmalı arka plan */}
+  <div
+    className="absolute inset-0 z-0"
+    style={{
+      backgroundImage: "url('/banner1.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      filter: "blur(8px) brightness(0.4)",
+    }}
+  />
+
+  {/* İçerik */}
+  <div className="relative z-10 text-center px-4">
+    <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+      Custom Printing, Crafted for You
+    </h1>
+    <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
+      High-quality, personalized printing on rugs, towels, and blankets. Bring your designs to life with PrintCraft Showcase.
+    </p>
+    <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+      <Link href="/gallery">View Our Work</Link>
+    </Button>
+  </div>
+</section>
+
+
+
 
       {/* Featured Products Section */}
       <section className="py-16 bg-secondary">
@@ -27,7 +42,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
               <Image
-                src="https://picsum.photos/600/400?random=1"
+                src="/rug.jpeg"
                 alt="Printed Rug"
                 width={600}
                 height={400}
@@ -41,7 +56,7 @@ export default function Home() {
             </div>
             <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
               <Image
-                src="https://picsum.photos/600/400?random=2"
+                src="/towel.jpeg"
                 alt="Printed Towel"
                 width={600}
                 height={400}
@@ -55,16 +70,16 @@ export default function Home() {
             </div>
             <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
               <Image
-                src="https://picsum.photos/600/400?random=3"
-                alt="Printed Blanket"
+                src="/floormat.png"
+                alt="Printed Floormat"
                 width={600}
                 height={400}
                 className="object-cover w-full h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
-                data-ai-hint="printed blanket"
+                data-ai-hint="printed floormat"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Cozy Blankets</h3>
-                <p className="text-muted-foreground text-sm">Warm and custom-printed blankets for comfort.</p>
+                <h3 className="text-xl font-semibold mb-2">Adorable Floormat</h3>
+                <p className="text-muted-foreground text-sm">Custom-printed floormats for comfort.</p>
               </div>
             </div>
           </div>

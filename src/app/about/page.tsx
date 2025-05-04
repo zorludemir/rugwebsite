@@ -17,7 +17,7 @@ const OurStory = () => (
     </div>
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
-        src="./resources/images/test.jpg"
+        src="/test.jpg"
         alt="Factory Interior"
         layout="fill"
         objectFit="cover"
