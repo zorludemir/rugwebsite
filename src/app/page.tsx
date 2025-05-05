@@ -14,7 +14,7 @@ export default function Home() {
       backgroundImage: "url('/banner1.png')",
       backgroundSize: "cover",
       backgroundPosition: "center",
-      filter: "blur(8px) brightness(0.4)",
+      filter: "blur(3px) brightness(0.4)",
     }}
   />
 
