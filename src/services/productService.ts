@@ -1,8 +1,33 @@
 
 import type { Product, ProductSize } from '@/types/product';
 
-// Mock data - in a real app, this would come from Firebase
-const mockProducts: Product[] = [
+// Prices per square meter for each product model
+const pricesPerSqMeter: Record<string, number> = {
+  'damla': 74.82,
+  'ametis': 68.73,
+  'bulut': 64.19,
+  'puffy': 47.01,
+  'venus': 43.70,
+  'bambu': 43.70,
+  'garden': 45.77,
+  'sonil': 23.84, // Şönil
+  'inci': 23.94,
+  'goblen': 39.37,
+  'elegant': 56.45,
+};
+
+// Helper function to calculate area from dimensions string "WIDTHxHEIGHT cm"
+function calculateAreaInSqM(dimensions: string): number {
+  const parts = dimensions.replace(/cm/gi, '').trim().split('x');
+  if (parts.length !== 2) return 0;
+  const widthCm = parseFloat(parts[0]);
+  const heightCm = parseFloat(parts[1]);
+  if (isNaN(widthCm) || isNaN(heightCm)) return 0;
+  return (widthCm / 100) * (heightCm / 100); // Convert cm to m and calculate area
+}
+
+// Raw product data without pre-calculated prices
+const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<ProductSize, 'priceModifier'>[] }[] = [
   {
     id: 'damla-rug',
     slug: 'damla',
@@ -13,12 +38,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/damlaDetail/800/600',
       'https://picsum.photos/seed/damlaLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'damla-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'damla-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'damla-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'damla-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'damla-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'damla-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'damla-80x150',
     material: 'Jute & Cotton Base',
@@ -43,12 +67,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/ametisDetail/800/600',
       'https://picsum.photos/seed/ametisLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'ametis-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'ametis-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'ametis-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'ametis-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'ametis-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'ametis-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'ametis-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'ametis-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'ametis-80x150',
     material: 'Cotton Base',
@@ -73,12 +96,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/bulutDetail/800/600',
       'https://picsum.photos/seed/bulutLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'bulut-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'bulut-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'bulut-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'bulut-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'bulut-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'bulut-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'bulut-80x150',
     material: 'Jute & Cotton Base',
@@ -103,12 +125,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/puffyDetail/800/600',
       'https://picsum.photos/seed/puffyLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'puffy-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'puffy-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'puffy-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'puffy-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'puffy-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'puffy-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'puffy-80x150',
     material: 'Non-slip Polyester Base',
@@ -132,12 +153,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/venusDetail/800/600',
       'https://picsum.photos/seed/venusLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'venus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'venus-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'venus-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'venus-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'venus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'venus-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'venus-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'venus-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'venus-80x150',
     material: 'Non-slip Cotton Base',
@@ -161,12 +181,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/bambuDetail/800/600',
       'https://picsum.photos/seed/bambuLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'bambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'bambu-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'bambu-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'bambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'bambu-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'bambu-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'bambu-80x150',
     material: 'Non-slip Polyester Base',
@@ -190,12 +209,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/gardenDetail/800/600',
       'https://picsum.photos/seed/gardenLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'garden-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'garden-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'garden-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'garden-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'garden-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'garden-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'garden-80x150',
     material: 'Felt Base',
@@ -219,12 +237,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/sonilDetail/800/600',
       'https://picsum.photos/seed/sonilLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'sonil-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'sonil-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'sonil-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'sonil-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'sonil-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'sonil-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'sonil-80x150',
     material: 'Non-slip Cotton Base',
@@ -248,12 +265,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/inciDetail/800/600',
       'https://picsum.photos/seed/inciLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'inci-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'inci-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'inci-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'inci-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'inci-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'inci-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'inci-80x150',
     material: 'Non-slip Polyester Base',
@@ -277,12 +293,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/goblenDetail/800/600',
       'https://picsum.photos/seed/goblenLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'goblen-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'goblen-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'goblen-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'goblen-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'goblen-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'goblen-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'goblen-80x150',
     material: 'Non-slip Thermo Base',
@@ -306,12 +321,11 @@ const mockProducts: Product[] = [
       'https://picsum.photos/seed/elegantDetail/800/600',
       'https://picsum.photos/seed/elegantLifestyle/800/600',
     ],
-    basePrice: 0,
     sizes: [
-      { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 0 },
-      { id: 'elegant-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 0 },
-      { id: 'elegant-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 0 },
-      { id: 'elegant-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 0 },
+      { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'elegant-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'elegant-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
+      { id: 'elegant-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
     ],
     defaultSizeId: 'elegant-80x150',
     material: 'Thermo Non-slip Base',
@@ -326,6 +340,38 @@ const mockProducts: Product[] = [
     aiHint: 'Elegant rug thermo',
   },
 ];
+
+const mockProducts: Product[] = rawProductData.map(p_raw => {
+  const productData = p_raw as any; // Cast to any to allow adding properties
+  const pricePerSqM = pricesPerSqMeter[productData.slug];
+  if (pricePerSqM === undefined) {
+    console.warn(`Price per SqM not found for product ${productData.slug}. Prices will be incorrect.`);
+  }
+
+  const defaultSizeEntry = productData.sizes.find((s: any) => s.id === productData.defaultSizeId) || productData.sizes[0];
+  if (!defaultSizeEntry) {
+    throw new Error(`Default size not found for product ${productData.slug}`);
+  }
+  const defaultSizeArea = calculateAreaInSqM(defaultSizeEntry.dimensions);
+  const calculatedBasePrice = defaultSizeArea * (pricePerSqM || 0);
+
+  const calculatedSizes: ProductSize[] = productData.sizes.map((size: any) => {
+    const sizeArea = calculateAreaInSqM(size.dimensions);
+    const sizePrice = sizeArea * (pricePerSqM || 0);
+    const priceModifier = sizePrice - calculatedBasePrice;
+    return {
+      ...size,
+      priceModifier: priceModifier,
+    };
+  });
+
+  return {
+    ...productData,
+    basePrice: calculatedBasePrice,
+    sizes: calculatedSizes,
+  } as Product;
+});
+
 
 // Simulate API delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
