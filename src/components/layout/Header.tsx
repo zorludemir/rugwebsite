@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Printer } from 'lucide-react';
+import { Menu, Printer } from 'lucide-react'; // Printer icon can be generic for "HALISER"
 import type { FC } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/gallery', label: 'Gallery' },
+  { href: '/products', label: 'Products' }, // Changed from Gallery to Products
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -16,8 +16,9 @@ const Header: FC = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-24 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Printer className="h-6 w-6 text-primary" />
-          <span className="font-bold text-lg">PrintCraft Showcase</span>
+          {/* Using a generic Printer icon for HALISER, can be changed if a specific logo is available */}
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M17 17h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M17 9V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v4"></path><rect width="10" height="8" x="7" y="12"></rect></svg>
+          <span className="font-bold text-lg">HALISER</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -45,8 +46,8 @@ const Header: FC = () => {
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium pt-8">
                 <Link href="/" className="flex items-center space-x-2 mb-4">
-                  <Printer className="h-6 w-6 text-primary" />
-                  <span className="font-bold text-lg">PrintCraft Showcase</span>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M17 17h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M17 9V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v4"></path><rect width="10" height="8" x="7" y="12"></rect></svg>
+                  <span className="font-bold text-lg">HALISER</span>
                 </Link>
                 {navLinks.map((link) => (
                   <Link

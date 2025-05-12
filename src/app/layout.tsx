@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PrintCraft Showcase',
-  description: 'Custom Printing on Rugs, Towels, and Blankets',
+  title: 'HALISER | Custom Rug Printing',
+  description: 'High-quality custom printing on blank rugs. Design your own rug with HALISER.',
 };
 
 export default function RootLayout({

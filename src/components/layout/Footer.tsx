@@ -5,7 +5,7 @@ const Footer: FC = () => {
   return (
     <footer className="border-t mt-12 py-6">
       <div className="container text-center text-sm text-muted-foreground">
-        © {currentYear} PrintCraft Showcase. All rights reserved.
+        © {currentYear} HALISER. All rights reserved.
       </div>
     </footer>
   );

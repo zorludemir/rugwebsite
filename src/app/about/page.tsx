@@ -9,20 +9,20 @@ const OurStory = () => (
     <div>
       <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
       <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-        Founded with a passion for quality and creativity, PrintCraft Showcase started as a small workshop dedicated to bringing custom designs to life on everyday textiles. Over the years, we've grown into a state-of-the-art facility, but our core commitment to craftsmanship and customer satisfaction remains unchanged.
+        Founded with a passion for quality and creativity, HALISER started as a small workshop dedicated to bringing custom designs to life on high-quality rug canvases. Over the years, we've grown into a state-of-the-art facility, but our core commitment to craftsmanship and customer satisfaction remains unchanged.
       </p>
       <p className="text-lg text-muted-foreground leading-relaxed">
-        We believe that personalization adds a unique touch to homes and lives. Our mission is to provide businesses and individuals with high-quality, custom-printed rugs, towels, and blankets that stand out.
+        We believe that personalization adds a unique touch to homes and lives. Our mission is to provide businesses and individuals with premium, custom-printed rugs that stand out.
       </p>
     </div>
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
-        src="/test.jpg"
-        alt="Factory Interior"
+        src="https://picsum.photos/seed/factory/800/600" // Placeholder for factory/workshop
+        alt="HALISER Workshop"
         layout="fill"
         objectFit="cover"
         className="transition-transform duration-300 ease-in-out hover:scale-105"
-        data-ai-hint="factory interior"
+        data-ai-hint="rug workshop"
       />
     </div>
   </div>
@@ -33,37 +33,37 @@ const processSteps = [
   {
     icon: Palette,
     title: '1. Design Preparation',
-    description: 'We work with your design files, ensuring they are optimized for high-resolution printing on your chosen textile (rug, towel, or blanket). Color matching and proofing are key parts of this stage.',
+    description: 'We work with your design files, ensuring they are optimized for high-resolution printing on your chosen rug. Color matching and proofing are key parts of this stage.',
     image: 'https://picsum.photos/600/400?random=5',
     aiHint: 'design software screen'
   },
   {
-    icon: CheckCircle, // Replaced Printer icon as it's used in header
-    title: '2. Material Selection & Prep',
-    description: 'The selected base material (rug, towel, or blanket) is carefully inspected and prepared. This may involve pre-treatment to ensure optimal ink absorption and color vibrancy.',
+    icon: CheckCircle, 
+    title: '2. Rug Selection & Prep',
+    description: 'Your selected blank rug is carefully inspected and prepared. This may involve pre-treatment to ensure optimal ink absorption and color vibrancy.',
     image: 'https://picsum.photos/600/400?random=6',
-    aiHint: 'textile roll fabric'
+    aiHint: 'blank rug material'
   },
   {
-    icon: CheckCircle, // Replaced Printer icon as it's used in header
+    icon: CheckCircle, 
     title: '3. Digital Printing',
-    description: 'Using state-of-the-art digital printing technology, your design is accurately transferred onto the material. Our machines handle intricate details and wide color gamuts.',
+    description: 'Using state-of-the-art digital printing technology, your design is accurately transferred onto the rug. Our machines handle intricate details and wide color gamuts.',
     image: 'https://picsum.photos/600/400?random=7',
-    aiHint: 'large format printer textile'
+    aiHint: 'rug printing machine'
   },
   {
     icon: Search,
     title: '4. Finishing & Quality Control',
-    description: 'After printing, the product undergoes finishing processes like heat setting (if required) for durability. Each item is meticulously inspected for print quality, color accuracy, and material integrity.',
+    description: 'After printing, the rug undergoes finishing processes like edge binding (if applicable) and heat setting for durability. Each item is meticulously inspected for print quality, color accuracy, and material integrity.',
     image: 'https://picsum.photos/600/400?random=8',
-    aiHint: 'quality control inspection textile'
+    aiHint: 'quality control rug'
   },
   {
     icon: Package,
     title: '5. Packaging & Shipping',
-    description: 'Finally, your custom-printed product is carefully packaged to ensure it arrives in perfect condition, ready to be used or displayed.',
+    description: 'Finally, your custom-printed rug is carefully packaged to ensure it arrives in perfect condition, ready to be displayed and enjoyed.',
     image: 'https://picsum.photos/600/400?random=9',
-    aiHint: 'packaging shipping box'
+    aiHint: 'rug packaging shipping'
   },
 ];
 
@@ -71,7 +71,7 @@ const OurProcess = () => (
   <section className="mb-16">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Production Process</h2>
     <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-      From design to delivery, we follow a meticulous process to ensure the highest quality custom-printed textiles.
+      From design to delivery, we follow a meticulous process to ensure the highest quality custom-printed rugs.
     </p>
     <div className="space-y-16">
       {processSteps.map((step, index) => (
@@ -108,24 +108,24 @@ const OurQuality = () => (
    <section>
      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Uncompromising Quality</h2>
      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-       We believe that exceptional custom prints deserve exceptional materials and craftsmanship.
+       We believe that exceptional custom prints deserve exceptional rug materials and craftsmanship.
      </p>
 
      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
        <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg order-1 md:order-2">
          <Image
            src="https://picsum.photos/800/600?random=10"
-           alt="Close up of fabric texture"
+           alt="Close up of rug texture"
            layout="fill"
            objectFit="cover"
            className="transition-transform duration-300 ease-in-out hover:scale-105"
-           data-ai-hint="fabric texture textile"
+           data-ai-hint="rug texture textile"
          />
        </div>
        <div className="order-2 md:order-1">
-         <h3 className="text-2xl font-semibold mb-4">Premium Materials</h3>
+         <h3 className="text-2xl font-semibold mb-4">Premium Rug Materials</h3>
          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-           We carefully select the base materials for our rugs, towels, and blankets. Our criteria include softness, durability, and suitability for high-resolution printing.
+           We carefully select the base materials for our rugs. Our criteria include softness, durability, and suitability for high-resolution printing.
          </p>
          <ul className="space-y-2 text-muted-foreground">
            <li className="flex items-center gap-2"><Feather className="w-5 h-5 text-accent" /> Soft and comfortable textures</li>
@@ -139,11 +139,11 @@ const OurQuality = () => (
        <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
          <Image
            src="https://picsum.photos/800/600?random=11"
-           alt="Vibrant printed textile detail"
+           alt="Vibrant printed rug detail"
            layout="fill"
            objectFit="cover"
            className="transition-transform duration-300 ease-in-out hover:scale-105"
-           data-ai-hint="printed textile color detail"
+           data-ai-hint="printed rug color detail"
          />
        </div>
         <div>
@@ -152,7 +152,7 @@ const OurQuality = () => (
            Our advanced printing process ensures that your custom designs are not just beautiful, but also durable. We use high-quality, fade-resistant inks and appropriate finishing techniques.
          </p>
           <p className="text-lg text-muted-foreground leading-relaxed">
-           Prints maintain their vibrancy even after washing (following care instructions). The ink bonds effectively with the fabric, minimizing cracking or peeling over time.
+           Prints maintain their vibrancy even after normal use and cleaning (following care instructions). The ink bonds effectively with the rug fibers, minimizing fading or wear over time.
          </p>
        </div>
      </div>
@@ -160,31 +160,31 @@ const OurQuality = () => (
      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
        <Card className="bg-card hover:shadow-lg transition-shadow duration-300">
          <CardHeader>
-           <CardTitle className="text-xl">Rugs</CardTitle>
+           <CardTitle className="text-xl">Area Rugs</CardTitle>
          </CardHeader>
          <CardContent>
            <p className="text-muted-foreground">
-             Durable top layer for vibrant printing, non-slip backing. Designed for foot traffic.
+             Durable top layer for vibrant printing, non-slip backing options. Designed for foot traffic and everyday use.
            </p>
          </CardContent>
        </Card>
        <Card className="bg-card hover:shadow-lg transition-shadow duration-300">
          <CardHeader>
-           <CardTitle className="text-xl">Towels</CardTitle>
+           <CardTitle className="text-xl">Runner Rugs</CardTitle>
          </CardHeader>
          <CardContent>
            <p className="text-muted-foreground">
-             Soft, absorbent materials suitable for everyday use. Withstand regular washing.
+             Perfect for hallways and narrow spaces. Customizable lengths and durable materials.
            </p>
          </CardContent>
        </Card>
        <Card className="bg-card hover:shadow-lg transition-shadow duration-300">
          <CardHeader>
-           <CardTitle className="text-xl">Blankets</CardTitle>
+           <CardTitle className="text-xl">Accent Rugs</CardTitle>
          </CardHeader>
          <CardContent>
            <p className="text-muted-foreground">
-             Cozy yet durable fabrics. Provide warmth and comfort, prints remain vibrant.
+             Variety of shapes (round, square, custom) to add a unique touch to any room. Prints remain vibrant.
            </p>
          </CardContent>
        </Card>
@@ -196,7 +196,7 @@ const OurQuality = () => (
 export default function AboutPage() {
   return (
     <div className="container py-12 md:py-20">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">About PrintCraft Showcase</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">About HALISER</h1>
 
       {/* Our Story Section */}
       <OurStory />
@@ -209,7 +209,7 @@ export default function AboutPage() {
        <div className="mt-16 text-center bg-secondary p-8 rounded-lg">
         <h3 className="text-2xl font-semibold mb-4">Commitment to Quality</h3>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Quality control is integrated into every step of our process. We are dedicated to delivering products that not only look great but also last.
+          Quality control is integrated into every step of our process. We are dedicated to delivering rug products that not only look great but also last.
         </p>
       </div>
 
