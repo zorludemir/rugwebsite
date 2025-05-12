@@ -1,8 +1,17 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { getProductBySlug } from '@/services/productService';
+import ProductCard from '@/components/products/ProductCard';
+import type { Product } from '@/types/product';
 
-export default function Home() {
+export default async function Home() {
+  const featuredProductSlugs = ['damla', 'inci', 'bambu'];
+  const featuredProductsPromises = featuredProductSlugs.map(slug => getProductBySlug(slug));
+  const resolvedProducts = await Promise.all(featuredProductsPromises);
+  const featuredProducts = resolvedProducts.filter(product => product !== null) as Product[];
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -33,50 +42,17 @@ export default function Home() {
       <section className="py-16 bg-secondary">
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Blank Rugs</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
-              <Image
-                src="https://picsum.photos/seed/fpRect/600/400"
-                alt="Blank Rectangular Rug"
-                width={600}
-                height={400}
-                className="object-cover w-full h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
-                data-ai-hint="rectangular rug"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Blank Rectangular Rugs</h3>
-                <p className="text-muted-foreground text-sm">Versatile canvas for classic and modern designs.</p>
-              </div>
+          {featuredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
-            <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
-              <Image
-                src="https://picsum.photos/seed/fpRound/600/400"
-                alt="Blank Round Rug"
-                width={600}
-                height={400}
-                className="object-cover w-full h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
-                data-ai-hint="round rug"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Blank Round Rugs</h3>
-                <p className="text-muted-foreground text-sm">Perfect for unique focal points and creative layouts.</p>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-lg shadow-md bg-card">
-              <Image
-                src="https://picsum.photos/seed/fpRunner/600/400"
-                alt="Blank Runner Rug"
-                width={600}
-                height={400}
-                className="object-cover w-full h-64 transition-transform duration-300 ease-in-out group-hover:scale-105"
-                data-ai-hint="runner rug"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Blank Runner Rugs</h3>
-                <p className="text-muted-foreground text-sm">Ideal for hallways, entryways, and custom lengths.</p>
-              </div>
-            </div>
-          </div>
+          ) : (
+            <p className="col-span-full text-center text-muted-foreground">
+              Featured products are currently unavailable.
+            </p>
+          )}
         </div>
       </section>
 
