@@ -1,0 +1,147 @@
+
+import { getProductBySlug, getAllProductSlugs } from '@/services/productService';
+import type { Product, ProductSize } from '@/types/product';
+import ImageGallery from '@/components/products/ImageGallery';
+import SizePriceSelectorClient from './SizePriceSelectorClient'; // Client component wrapper
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { CheckCircle, Package, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const product = await getProductBySlug(params.slug);
+
+  if (!product) {
+    return {
+      title: 'Product Not Found',
+      description: 'The product you are looking for does not exist.',
+    };
+  }
+
+  return {
+    title: `${product.name} | HALISER`,
+    description: product.description.substring(0, 160), // Keep it concise for meta description
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: product.images.length > 0 ? [product.images[0]] : [],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const slugs = await getAllProductSlugs();
+  return slugs.map((slug) => ({
+    slug,
+  }));
+}
+
+export default async function ProductDetailPage({ params }: Props) {
+  const product = await getProductBySlug(params.slug);
+
+  if (!product) {
+    return (
+      <div className="container py-12 md:py-20 text-center">
+        <h1 className="text-3xl font-bold mb-4">Product Not Found</h1>
+        <p className="text-muted-foreground mb-8">
+          Sorry, we couldn't find the product you're looking for.
+        </p>
+        <Button asChild>
+          <Link href="/products">Back to Products</Link>
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container py-12 md:py-20">
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        {/* Image Gallery */}
+        <div className="md:sticky md:top-28 h-max"> {/* Sticky gallery on larger screens */}
+          <ImageGallery images={product.images} altText={product.name} />
+        </div>
+
+        {/* Product Info */}
+        <div className="space-y-6">
+          <h1 className="text-3xl lg:text-4xl font-bold">{product.name}</h1>
+          
+          <div className="flex gap-2">
+            <Badge variant="outline">{product.category}</Badge>
+            <Badge variant="outline">{product.material}</Badge>
+            <Badge variant="outline">{product.shape}</Badge>
+          </div>
+
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {product.description}
+          </p>
+
+          {/* Client component for size selection and price updates */}
+          <SizePriceSelectorClient 
+            basePrice={product.basePrice} 
+            sizes={product.sizes}
+            defaultSizeId={product.defaultSizeId}
+          />
+
+          {product.features && product.features.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">Key Features</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-muted-foreground">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
+
+          {product.careInstructions && (
+             <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">Care Instructions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">{product.careInstructions}</p>
+              </CardContent>
+            </Card>
+          )}
+          
+          <div className="pt-4">
+             <Button size="lg" className="w-full">Add to Quote Request (Print Design)</Button>
+             <p className="text-xs text-muted-foreground mt-2 text-center">
+                This is a blank rug. Contact us to get this rug printed with your custom design.
+             </p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* You could add related products or more sections here */}
+      <Separator className="my-12 md:my-16" />
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold mb-4">Need a Custom Print?</h2>
+        <p className="text-muted-foreground max-w-xl mx-auto mb-6">
+            HALISER specializes in printing your unique designs on our high-quality blank rugs. Let's bring your vision to life.
+        </p>
+        <Button asChild variant="outline">
+            <Link href="/contact">Contact Us for a Custom Quote</Link>
+        </Button>
+      </div>
+    </div>
+  );
+}
