@@ -7,36 +7,43 @@ import ProductCard from '@/components/products/ProductCard';
 import type { Product } from '@/types/product';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Palette, Printer, Scissors, ShieldCheck, Feather, Droplet, Package } from 'lucide-react'; // Added Printer, Scissors
+import { Palette, Printer, Scissors, ShieldCheck, Feather, Droplet, Layers, Package } from 'lucide-react'; // Added Layers
 
 // Updated Process Steps Data
 const processSteps = [
   {
     icon: Palette,
-    title: '1. Design Preparation and Printing',
-    description: 'Each rug begins its journey with the creation of intricate patterns and motifs. These designs are first developed digitally using professional design software. Once finalized, the patterns are printed onto a three-layer coated paper using a high-precision printer. This specialized paper allows for high-quality color transfer, ensuring vibrant and detailed visuals.',
-    image: '/img/prep0.jpg', // Updated path
-    aiHint: 'design software screen'
+    title: '1. Design Preparation',
+    description: "The process begins when we receive your custom designs. Our team meticulously checks each design, ensuring it's in the correct file format and optimized for the selected rug dimensions. We make any necessary adjustments to guarantee a flawless print outcome.",
+    image: '/home/prep0.png',
+    aiHint: 'design review software'
   },
   {
-    icon: Printer, // Changed icon
-    title: '2. Transfer Process with Heat Press',
+    icon: Printer,
+    title: '2. Printing',
+    description: "Once designs are finalized, they are printed onto a specialized three-layer coated paper using a high-precision industrial printer. This advanced paper is crucial for achieving high-quality color transfer, ensuring vibrant and detailed visuals on the final rug.",
+    image: '/img/process_printing_paper.jpg',
+    aiHint: 'large format printer'
+  },
+  {
+    icon: Layers, // Changed from Printer
+    title: '3. Transfer Process with Heat Press',
     description: 'The rug, initially prepared in its white base form, is carefully placed inside a heat press machine. The printed transfer paper is positioned directly on top of the rug surface. Through a controlled heat and pressure process, the design from the paper is sublimated onto the rug’s pile. This thermal transfer technique ensures that the colors are vivid, long-lasting, and deeply embedded into the fibers.',
-    image: '/img/prep1.jpg', // Updated path
-    aiHint: 'heat press rug' // Updated AI hint
+    image: '/home/prep1.png',
+    aiHint: 'heat press rug'
   },
   {
-    icon: Scissors, // Changed icon
-    title: '3. Finishing and Edge Work',
+    icon: Scissors,
+    title: '4. Finishing and Edge Work',
     description: 'After the transfer is complete, the rug undergoes several finishing procedures. These include trimming the edges, reinforcing the corners, and ensuring all surface details are smooth and precise. This step ensures that the rug not only looks polished but also meets durability standards for everyday use.',
-    image: '/img/prep2.jpg', // Updated path
-    aiHint: 'rug finishing edge' // Updated AI hint
+    image: '/home/prep2.png',
+    aiHint: 'rug finishing edge'
   },
   {
-    icon: ShieldCheck, // Changed icon
-    title: '4. Quality Control, Packaging, and Shipping',
+    icon: ShieldCheck,
+    title: '5. Quality Control, Packaging, and Shipping',
     description: 'Every rug is subjected to strict quality control checks. Each piece is thoroughly inspected for print accuracy, texture consistency, and edge finishing. Once approved, the rug is vacuum-packed to reduce size and protect it during transport. This compact packaging method also allows for efficient and eco-friendly shipping to customers worldwide.',
-    image: '/img/prep3.jpg', // Updated path
+    image: '/home/prep3.png',
     aiHint: 'quality control rug'
   },
 ];
@@ -98,7 +105,7 @@ const OurQualityCommitment = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg order-1 md:order-2">
           <Image
-            src="/img/quality-commitment-texture.jpg" // Updated path
+            src="/img/quality-commitment-texture.jpg" 
             alt="Close up of rug texture"
             layout="fill"
             objectFit="cover"
@@ -122,7 +129,7 @@ const OurQualityCommitment = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
           <Image
-            src="/img/quality-commitment-print.jpg" // Updated path
+            src="/img/quality-commitment-print.jpg" 
             alt="Vibrant printed rug detail"
             layout="fill"
             objectFit="cover"
@@ -191,7 +198,7 @@ export default async function Home() {
         <div
           className="absolute inset-0 z-0 opacity-30"
           style={{
-            backgroundImage: "url('/img/banner1.png')", // Assuming banner1.png is in public/img
+            backgroundImage: "url('/img/banner1.png')", 
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -209,8 +216,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Products Section - MOVED HERE */}
-      <section className="py-16 bg-card"> {/* Changed background to card for better contrast */}
+      {/* Featured Products Section */}
+      <section className="py-16 bg-card"> 
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Blank Rugs</h2>
           {featuredProducts.length > 0 ? (
