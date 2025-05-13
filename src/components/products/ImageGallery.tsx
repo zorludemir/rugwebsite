@@ -12,7 +12,7 @@ interface ImageGalleryProps {
 }
 
 export default function ImageGallery({ images, altText }: ImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState(images[0] || 'https://picsum.photos/800/600');
+  const [selectedImage, setSelectedImage] = useState(images[0] || '/img/placeholder.jpg'); // Updated placeholder
 
   if (!images || images.length === 0) {
     return (
@@ -38,6 +38,7 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
               height={600}
               className="object-cover w-full h-full transition-opacity duration-300 ease-in-out"
               priority // Prioritize loading for the main image
+              unoptimized={selectedImage.startsWith('http')} // Add this if you might still use external URLs
             />
           </div>
         </CardContent>
@@ -59,6 +60,7 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
                 width={150}
                 height={150}
                 className="object-cover w-full h-full"
+                unoptimized={image.startsWith('http')} // Add this for thumbnails too
               />
               <span className="sr-only">View image {index + 1}</span>
             </button>

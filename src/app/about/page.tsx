@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Separator } from "@/components/ui/separator";
 
@@ -15,7 +16,7 @@ const OurStory = () => (
     </div>
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
-        src="https://picsum.photos/seed/factory/800/600" // Placeholder for factory/workshop
+        src="/img/factory.jpg" // Updated path
         alt="EUROSER Workshop"
         layout="fill"
         objectFit="cover"

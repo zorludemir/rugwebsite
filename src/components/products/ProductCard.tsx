@@ -11,17 +11,19 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const imageUrl = product.images && product.images.length > 0 ? product.images[0] : '/img/placeholder.jpg';
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg">
+    <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg group">
       <CardHeader className="p-0">
         <Link href={`/products/${product.slug}`} className="block aspect-w-4 aspect-h-3">
           <Image
-            src={product.images[0]}
+            src={imageUrl}
             alt={product.name}
             width={600}
             height={450}
             className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
             data-ai-hint={product.aiHint || product.category}
+            unoptimized={imageUrl.startsWith('http')} // Add this if you might still use external URLs for some products
           />
         </Link>
       </CardHeader>

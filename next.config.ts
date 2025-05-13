@@ -11,13 +11,15 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**',
-      },
+      // If you were to serve images from a local dev server under a specific hostname for testing
+      // you might add something like this. For /public folder images, this is not needed.
+      // {
+      //   protocol: 'http',
+      //   hostname: 'localhost',
+      // },
     ],
+    // If you need to serve images from external domains in the future, add them here.
+    // For now, all images are local and served from the /public directory, so no remotePatterns needed.
   },
   // Make environment variable accessible client-side
   env: {
