@@ -70,3 +70,4 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
     </div>
   );
 }
+

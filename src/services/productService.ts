@@ -403,3 +403,4 @@ export const productCategories = [
   { value: 'runner', label: 'Runners' },
   { value: 'shag', label: 'Shag Rugs'}
 ];
+
