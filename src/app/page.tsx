@@ -7,48 +7,41 @@ import ProductCard from '@/components/products/ProductCard';
 import type { Product } from '@/types/product';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle, Search, Palette, Package, Feather, ShieldCheck, Droplet } from 'lucide-react';
+import { Palette, Printer, Scissors, ShieldCheck, Feather, Droplet, Package } from 'lucide-react'; // Added Printer, Scissors
 
-// Process Steps Data (moved from about page)
+// Updated Process Steps Data
 const processSteps = [
   {
     icon: Palette,
-    title: '1. Design Preparation',
-    description: 'We work with your design files, ensuring they are optimized for high-resolution printing on your chosen rug. Color matching and proofing are key parts of this stage.',
-    image: 'https://picsum.photos/600/400?random=5',
+    title: '1. Design Preparation and Printing',
+    description: 'Each rug begins its journey with the creation of intricate patterns and motifs. These designs are first developed digitally using professional design software. Once finalized, the patterns are printed onto a three-layer coated paper using a high-precision printer. This specialized paper allows for high-quality color transfer, ensuring vibrant and detailed visuals.',
+    image: 'https://picsum.photos/seed/designprep/600/400', // Updated seed for potentially new image
     aiHint: 'design software screen'
   },
   {
-    icon: CheckCircle, 
-    title: '2. Rug Selection & Prep',
-    description: 'Your selected blank rug is carefully inspected and prepared. This may involve pre-treatment to ensure optimal ink absorption and color vibrancy.',
-    image: 'https://picsum.photos/600/400?random=6',
-    aiHint: 'blank rug material'
+    icon: Printer, // Changed icon
+    title: '2. Transfer Process with Heat Press',
+    description: 'The rug, initially prepared in its white base form, is carefully placed inside a heat press machine. The printed transfer paper is positioned directly on top of the rug surface. Through a controlled heat and pressure process, the design from the paper is sublimated onto the rug’s pile. This thermal transfer technique ensures that the colors are vivid, long-lasting, and deeply embedded into the fibers.',
+    image: 'https://picsum.photos/seed/heatpress/600/400', // Updated seed
+    aiHint: 'heat press rug' // Updated AI hint
   },
   {
-    icon: CheckCircle, // Using CheckCircle as placeholder, was DropletIcon before, but Droplet is used in Quality section
-    title: '3. Digital Printing',
-    description: 'Using state-of-the-art digital printing technology, your design is accurately transferred onto the rug. Our machines handle intricate details and wide color gamuts.',
-    image: 'https://picsum.photos/600/400?random=7',
-    aiHint: 'rug printing machine'
+    icon: Scissors, // Changed icon
+    title: '3. Finishing and Edge Work',
+    description: 'After the transfer is complete, the rug undergoes several finishing procedures. These include trimming the edges, reinforcing the corners, and ensuring all surface details are smooth and precise. This step ensures that the rug not only looks polished but also meets durability standards for everyday use.',
+    image: 'https://picsum.photos/seed/finishing/600/400', // Updated seed
+    aiHint: 'rug finishing edge' // Updated AI hint
   },
   {
-    icon: Search,
-    title: '4. Finishing & Quality Control',
-    description: 'After printing, the rug undergoes finishing processes like edge binding (if applicable) and heat setting for durability. Each item is meticulously inspected for print quality, color accuracy, and material integrity.',
-    image: 'https://picsum.photos/600/400?random=8',
+    icon: ShieldCheck, // Changed icon
+    title: '4. Quality Control, Packaging, and Shipping',
+    description: 'Every rug is subjected to strict quality control checks. Each piece is thoroughly inspected for print accuracy, texture consistency, and edge finishing. Once approved, the rug is vacuum-packed to reduce size and protect it during transport. This compact packaging method also allows for efficient and eco-friendly shipping to customers worldwide.',
+    image: 'https://picsum.photos/seed/qcpackship/600/400', // Updated seed
     aiHint: 'quality control rug'
-  },
-  {
-    icon: Package,
-    title: '5. Packaging & Shipping',
-    description: 'Finally, your custom-printed rug is carefully packaged to ensure it arrives in perfect condition, ready to be displayed and enjoyed.',
-    image: 'https://picsum.photos/600/400?random=9',
-    aiHint: 'rug packaging shipping'
   },
 ];
 
-// Our Production Process Component (moved from about page)
+// Our Production Process Component
 const OurProductionProcess = () => (
   <section className="py-16 bg-secondary">
     <div className="container">
@@ -93,7 +86,7 @@ const OurProductionProcess = () => (
   </section>
 );
 
-// Our Quality Commitment Component (moved from about page)
+// Our Quality Commitment Component
 const OurQualityCommitment = () => (
    <section className="py-16 bg-background">
      <div className="container">
@@ -216,14 +209,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Our Production Process Section */}
-      <OurProductionProcess />
-      
-      {/* Our Quality Commitment Section */}
-      <OurQualityCommitment />
-
-      {/* Featured Products Section */}
-      <section className="py-16 bg-secondary">
+      {/* Featured Products Section - MOVED HERE */}
+      <section className="py-16 bg-card"> {/* Changed background to card for better contrast */}
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Blank Rugs</h2>
           {featuredProducts.length > 0 ? (
@@ -244,6 +231,12 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Our Production Process Section */}
+      <OurProductionProcess />
+      
+      {/* Our Quality Commitment Section */}
+      <OurQualityCommitment />
 
       {/* Call to Action Section */}
       <section className="py-20 bg-background">
