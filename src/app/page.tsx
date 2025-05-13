@@ -22,28 +22,28 @@ const processSteps = [
     icon: Printer,
     title: '2. Printing',
     description: "Once designs are finalized, they are printed onto a specialized three-layer coated paper using a high-precision industrial printer. This advanced paper is crucial for achieving high-quality color transfer, ensuring vibrant and detailed visuals on the final rug.",
-    image: '/img/process_printing_paper.jpg',
+    image: '/home/prep1.png',
     aiHint: 'large format printer'
   },
   {
     icon: Layers, // Changed from Printer
     title: '3. Transfer Process with Heat Press',
     description: 'The rug, initially prepared in its white base form, is carefully placed inside a heat press machine. The printed transfer paper is positioned directly on top of the rug surface. Through a controlled heat and pressure process, the design from the paper is sublimated onto the rug’s pile. This thermal transfer technique ensures that the colors are vivid, long-lasting, and deeply embedded into the fibers.',
-    image: '/home/prep1.png',
+    image: '/home/prep2.png',
     aiHint: 'heat press rug'
   },
   {
     icon: Scissors,
     title: '4. Finishing and Edge Work',
     description: 'After the transfer is complete, the rug undergoes several finishing procedures. These include trimming the edges, reinforcing the corners, and ensuring all surface details are smooth and precise. This step ensures that the rug not only looks polished but also meets durability standards for everyday use.',
-    image: '/home/prep2.png',
+    image: '/home/prep3.png',
     aiHint: 'rug finishing edge'
   },
   {
     icon: ShieldCheck,
     title: '5. Quality Control, Packaging, and Shipping',
     description: 'Every rug is subjected to strict quality control checks. Each piece is thoroughly inspected for print accuracy, texture consistency, and edge finishing. Once approved, the rug is vacuum-packed to reduce size and protect it during transport. This compact packaging method also allows for efficient and eco-friendly shipping to customers worldwide.',
-    image: '/home/prep3.png',
+    image: '/home/prep4.png',
     aiHint: 'quality control rug'
   },
 ];
