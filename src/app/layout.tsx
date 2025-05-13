@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'HALISER | Custom Rug Printing',
-  description: 'High-quality custom printing on blank rugs. Design your own rug with HALISER.',
+  title: 'EUROSER | Custom Rug Printing',
+  description: 'High-quality custom printing on blank rugs. Design your own rug with EUROSER.',
 };
 
 export default function RootLayout({

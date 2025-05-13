@@ -12,21 +12,19 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
     <div className="container py-12 md:py-20">
       <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Our Blank Rug Products</h1>
       <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-10">
-        Choose the perfect blank canvas for your custom rug design. We offer a variety of shapes, sizes, and materials, ready for your unique print.
+        Choose the perfect blank canvas for your custom rug design with EUROSER. We offer a variety of shapes, sizes, and materials, ready for your unique print.
       </p>
 
       <Tabs defaultValue={currentCategory} className="w-full">
         <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 mb-10 max-w-2xl mx-auto">
           {productCategories.map((category) => (
             <TabsTrigger key={category.value} value={category.value} asChild>
-              {/* Next.js Link for navigation within TabsTrigger. This might require specific styling if default styles are overridden. */}
-              {/* For simplicity, we'll rely on page reload for category change or use client component with router.push for SPA-like behavior */}
+              {/* Next.js Link for navigation within TabsTrigger. */}
               <a href={`/products?category=${category.value}`}>{category.label}</a>
             </TabsTrigger>
           ))}
         </TabsList>
 
-        {/* Content can be simplified if products are already filtered by searchParams */}
         <TabsContent value={currentCategory}>
             {products.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

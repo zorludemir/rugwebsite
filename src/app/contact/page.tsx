@@ -9,7 +9,7 @@ const factoryLocation = { lat: 34.0522, lng: -118.2437 }; // Example: Los Angele
 export default function ContactPage() {
   return (
     <div className="container py-12 md:py-20">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Contact HALISER</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Contact EUROSER</h1>
       <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
         We'd love to hear from you! Whether you have a question about our custom rug services or want to start a project, feel free to reach out.
       </p>
@@ -33,7 +33,7 @@ export default function ContactPage() {
                   <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-medium text-foreground">Address</h3>
-                    <p>123 Haliser St, Textile City, TC 12345</p> {/* Replace with actual address */}
+                    <p>123 Euroser St, Textile City, TC 12345</p> {/* Replace with actual address */}
                     <a
                      href={`https://www.google.com/maps/search/?api=1&query=${factoryLocation.lat},${factoryLocation.lng}`}
                      target="_blank"
@@ -55,7 +55,7 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-medium text-foreground">Email</h3>
-                    <a href="mailto:info@haliser.com" className="hover:text-accent">info@haliser.com</a> {/* Replace with actual email */}
+                    <a href="mailto:info@euroser.com" className="hover:text-accent">info@euroser.com</a> {/* Replace with actual email */}
                   </div>
                 </div>
               </div>

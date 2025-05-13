@@ -5,6 +5,185 @@ import Link from 'next/link';
 import { getProductBySlug } from '@/services/productService';
 import ProductCard from '@/components/products/ProductCard';
 import type { Product } from '@/types/product';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { CheckCircle, Search, Palette, Package, Feather, ShieldCheck, Droplet } from 'lucide-react';
+
+// Process Steps Data (moved from about page)
+const processSteps = [
+  {
+    icon: Palette,
+    title: '1. Design Preparation',
+    description: 'We work with your design files, ensuring they are optimized for high-resolution printing on your chosen rug. Color matching and proofing are key parts of this stage.',
+    image: 'https://picsum.photos/600/400?random=5',
+    aiHint: 'design software screen'
+  },
+  {
+    icon: CheckCircle, 
+    title: '2. Rug Selection & Prep',
+    description: 'Your selected blank rug is carefully inspected and prepared. This may involve pre-treatment to ensure optimal ink absorption and color vibrancy.',
+    image: 'https://picsum.photos/600/400?random=6',
+    aiHint: 'blank rug material'
+  },
+  {
+    icon: CheckCircle, // Using CheckCircle as placeholder, was DropletIcon before, but Droplet is used in Quality section
+    title: '3. Digital Printing',
+    description: 'Using state-of-the-art digital printing technology, your design is accurately transferred onto the rug. Our machines handle intricate details and wide color gamuts.',
+    image: 'https://picsum.photos/600/400?random=7',
+    aiHint: 'rug printing machine'
+  },
+  {
+    icon: Search,
+    title: '4. Finishing & Quality Control',
+    description: 'After printing, the rug undergoes finishing processes like edge binding (if applicable) and heat setting for durability. Each item is meticulously inspected for print quality, color accuracy, and material integrity.',
+    image: 'https://picsum.photos/600/400?random=8',
+    aiHint: 'quality control rug'
+  },
+  {
+    icon: Package,
+    title: '5. Packaging & Shipping',
+    description: 'Finally, your custom-printed rug is carefully packaged to ensure it arrives in perfect condition, ready to be displayed and enjoyed.',
+    image: 'https://picsum.photos/600/400?random=9',
+    aiHint: 'rug packaging shipping'
+  },
+];
+
+// Our Production Process Component (moved from about page)
+const OurProductionProcess = () => (
+  <section className="py-16 bg-secondary">
+    <div className="container">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Production Process</h2>
+      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+        From design to delivery, we follow a meticulous process to ensure the highest quality custom-printed rugs.
+      </p>
+      <div className="space-y-16">
+        {processSteps.map((step, index) => (
+          <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-12`}>
+            <div className="md:w-1/2 relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md group">
+              <Image
+                src={step.image}
+                alt={step.title}
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+                data-ai-hint={step.aiHint}
+              />
+            </div>
+            <div className="md:w-1/2">
+              <Card className="border-none shadow-none bg-transparent">
+                <CardHeader className="flex flex-row items-center gap-4 p-0 pb-4">
+                  <step.icon className="w-10 h-10 text-accent flex-shrink-0" />
+                  <CardTitle className="text-2xl md:text-3xl">{step.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-16 text-center bg-background p-8 rounded-lg shadow-md">
+        <h3 className="text-2xl font-semibold mb-4">Commitment to Excellence</h3>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Quality control is integrated into every step of our process. We are dedicated to delivering rug products that not only look great but also last.
+        </p>
+      </div>
+    </div>
+  </section>
+);
+
+// Our Quality Commitment Component (moved from about page)
+const OurQualityCommitment = () => (
+   <section className="py-16 bg-background">
+     <div className="container">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Uncompromising Quality</h2>
+      <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+        We believe that exceptional custom prints deserve exceptional rug materials and craftsmanship.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg order-1 md:order-2">
+          <Image
+            src="https://picsum.photos/800/600?random=10"
+            alt="Close up of rug texture"
+            layout="fill"
+            objectFit="cover"
+            className="transition-transform duration-300 ease-in-out hover:scale-105"
+            data-ai-hint="rug texture textile"
+          />
+        </div>
+        <div className="order-2 md:order-1">
+          <h3 className="text-2xl font-semibold mb-4">Premium Rug Materials</h3>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            We carefully select the base materials for our rugs. Our criteria include softness, durability, and suitability for high-resolution printing.
+          </p>
+          <ul className="space-y-2 text-muted-foreground">
+            <li className="flex items-center gap-2"><Feather className="w-5 h-5 text-accent" /> Soft and comfortable textures</li>
+            <li className="flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-accent" /> Durable construction for longevity</li>
+            <li className="flex items-center gap-2"><Droplet className="w-5 h-5 text-accent" /> Excellent ink absorption for vibrant prints</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+          <Image
+            src="https://picsum.photos/800/600?random=11"
+            alt="Vibrant printed rug detail"
+            layout="fill"
+            objectFit="cover"
+            className="transition-transform duration-300 ease-in-out hover:scale-105"
+            data-ai-hint="printed rug color detail"
+          />
+        </div>
+          <div>
+          <h3 className="text-2xl font-semibold mb-4">Lasting Prints</h3>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Our advanced printing process ensures that your custom designs are not just beautiful, but also durable. We use high-quality, fade-resistant inks and appropriate finishing techniques.
+          </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+            Prints maintain their vibrancy even after normal use and cleaning (following care instructions). The ink bonds effectively with the rug fibers, minimizing fading or wear over time.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-xl">Area Rugs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              Durable top layer for vibrant printing, non-slip backing options. Designed for foot traffic and everyday use.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-xl">Runner Rugs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              Perfect for hallways and narrow spaces. Customizable lengths and durable materials.
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-xl">Accent Rugs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground">
+              Variety of shapes (round, square, custom) to add a unique touch to any room. Prints remain vibrant.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+     </div>
+   </section>
+);
+
 
 export default async function Home() {
   const featuredProductSlugs = ['damla', 'inci', 'bambu'];
@@ -15,33 +194,38 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-primary to-accent/80">
         <div
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 opacity-30"
           style={{
-            backgroundImage: "url('/banner1.png')", // Assuming banner1.png is a suitable generic background
+            backgroundImage: "url('/banner1.png')", 
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "blur(3px) brightness(0.4)",
           }}
         />
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-            Custom Rugs, Crafted by HALISER
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+            Custom Rugs, Crafted by EUROSER
           </h1>
-          <p className="text-lg md:text-xl text-white mb-8 max-w-3xl mx-auto">
-            High-quality, personalized printing on a variety of blank rugs. Bring your designs to life with HALISER.
+          <p className="text-lg md:text-xl text-primary-foreground mb-10 max-w-3xl mx-auto drop-shadow-sm">
+            High-quality, personalized printing on a variety of blank rugs. Bring your designs to life with EUROSER.
           </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
             <Link href="/products">Explore Blank Rugs</Link>
           </Button>
         </div>
       </section>
 
+      {/* Our Production Process Section */}
+      <OurProductionProcess />
+      
+      {/* Our Quality Commitment Section */}
+      <OurQualityCommitment />
+
       {/* Featured Products Section */}
       <section className="py-16 bg-secondary">
         <div className="container">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Blank Rugs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Blank Rugs</h2>
           {featuredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProducts.map((product) => (
@@ -53,17 +237,22 @@ export default async function Home() {
               Featured products are currently unavailable.
             </p>
           )}
+           <div className="text-center mt-12">
+            <Button asChild variant="outline" size="lg">
+              <Link href="/products">View All Products</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-background">
+      <section className="py-20 bg-background">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Design Your Custom Rug?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Contact us today to discuss your ideas and get a quote for your HALISER rug.
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Design Your Custom Rug?</h2>
+          <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+            Contact us today to discuss your ideas and get a quote for your EUROSER rug.
           </p>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
             <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
