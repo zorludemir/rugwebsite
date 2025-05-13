@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductCard from '@/components/products/ProductCard';
 import { getProducts, productCategories } from '@/services/productService';
 import type { Product } from '@/types/product';
+import Link from 'next/link'; // Import Link component
 
 export default async function ProductsPage({ searchParams }: { searchParams?: { category?: string } }) {
   const currentCategory = searchParams?.category || 'all';
@@ -19,8 +20,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
         <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-5 mb-10 max-w-2xl mx-auto">
           {productCategories.map((category) => (
             <TabsTrigger key={category.value} value={category.value} asChild>
-              {/* Next.js Link for navigation within TabsTrigger. */}
-              <a href={`/products?category=${category.value}`}>{category.label}</a>
+              <Link href={`/products?category=${category.value}`}>{category.label}</Link>
             </TabsTrigger>
           ))}
         </TabsList>
@@ -42,3 +42,4 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
     </div>
   );
 }
+
