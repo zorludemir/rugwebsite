@@ -29,7 +29,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${product.name} | HALISER`,
+    title: `${product.name} | EUROSER`,
     description: product.description.substring(0, 160), // Keep it concise for meta description
     openGraph: {
       title: product.name,
@@ -75,7 +75,7 @@ export default async function ProductDetailPage({ params }: Props) {
         <div className="space-y-6">
           <h1 className="text-3xl lg:text-4xl font-bold">{product.name}</h1>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <Badge variant="outline">{product.category}</Badge>
             <Badge variant="outline">{product.material}</Badge>
             <Badge variant="outline">{product.shape}</Badge>
@@ -122,7 +122,7 @@ export default async function ProductDetailPage({ params }: Props) {
           )}
           
           <div className="pt-4">
-             <Button size="lg" className="w-full">Add to Quote Request (Print Design)</Button>
+             <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Add to Quote Request (Print Design)</Button>
              <p className="text-xs text-muted-foreground mt-2 text-center">
                 This is a blank rug. Contact us to get this rug printed with your custom design.
              </p>
@@ -136,7 +136,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-4">Need a Custom Print?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-            HALISER specializes in printing your unique designs on our high-quality blank rugs. Let's bring your vision to life.
+            EUROSER specializes in printing your unique designs on our high-quality blank rugs. Let's bring your vision to life.
         </p>
         <Button asChild variant="outline">
             <Link href="/contact">Contact Us for a Custom Quote</Link>
