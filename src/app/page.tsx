@@ -7,43 +7,43 @@ import ProductCard from '@/components/products/ProductCard';
 import type { Product } from '@/types/product';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Palette, Printer, Scissors, ShieldCheck, Feather, Droplet, Layers, Package, ScanEye } from 'lucide-react'; // Added Layers, ScanEye
+import { Palette, Printer, Scissors, ShieldCheck, Feather, Droplet, Layers, Package, ScanEye } from 'lucide-react';
 
 // Updated Process Steps Data
 const processSteps = [
   {
-    icon: ScanEye, // Changed Icon
+    icon: ScanEye,
     title: '1. Design Preparation',
     description: "The process begins when we receive your custom designs. Our team meticulously checks each design, ensuring it's in the correct file format and optimized for the selected rug dimensions. We make any necessary adjustments to guarantee a flawless print outcome.",
-    image: '/home/prep0.png', // Updated image path
+    image: '/img/design_prep_image.jpg',
     aiHint: 'design review software'
   },
   {
     icon: Printer,
     title: '2. Printing',
     description: "Once designs are finalized, they are printed onto a specialized three-layer coated paper using a high-precision industrial printer. This advanced paper is crucial for achieving high-quality color transfer, ensuring vibrant and detailed visuals on the final rug.",
-    image: '/home/prep1.png', // Updated image path
+    image: '/img/printing_process_image.jpg',
     aiHint: 'large format printer'
   },
   {
     icon: Layers,
     title: '3. Transfer Process with Heat Press',
     description: 'The rug, initially prepared in its white base form, is carefully placed inside a heat press machine. The printed transfer paper is positioned directly on top of the rug surface. Through a controlled heat and pressure process, the design from the paper is sublimated onto the rug’s pile. This thermal transfer technique ensures that the colors are vivid, long-lasting, and deeply embedded into the fibers.',
-    image: '/home/prep2.png', // Updated image path
+    image: '/img/heat_press_image.jpg',
     aiHint: 'heat press rug'
   },
   {
     icon: Scissors,
     title: '4. Finishing and Edge Work',
     description: 'After the transfer is complete, the rug undergoes several finishing procedures. These include trimming the edges, reinforcing the corners, and ensuring all surface details are smooth and precise. This step ensures that the rug not only looks polished but also meets durability standards for everyday use.',
-    image: '/home/prep3.png', // Updated image path
+    image: '/img/finishing_edge_work_image.jpg',
     aiHint: 'rug finishing edge'
   },
   {
     icon: ShieldCheck,
     title: '5. Quality Control, Packaging, and Shipping',
     description: 'Every rug is subjected to strict quality control checks. Each piece is thoroughly inspected for print accuracy, texture consistency, and edge finishing. Once approved, the rug is vacuum-packed to reduce size and protect it during transport. This compact packaging method also allows for efficient and eco-friendly shipping to customers worldwide.',
-    image: '/home/prep4.png', // Updated image path
+    image: '/img/quality_control_packaging_image.jpg',
     aiHint: 'quality control rug'
   },
 ];
@@ -105,7 +105,7 @@ const OurQualityCommitment = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg order-1 md:order-2">
           <Image
-            src="/whiterug.png"
+            src="/img/rug_texture_closeup.jpg"
             alt="Close up of rug texture"
             layout="fill"
             objectFit="cover"
@@ -129,7 +129,7 @@ const OurQualityCommitment = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
           <Image
-            src="/printedrug.png"
+            src="/img/vibrant_printed_rug.jpg"
             alt="Vibrant printed rug detail"
             layout="fill"
             objectFit="cover"
@@ -191,6 +191,10 @@ export default async function Home() {
   const resolvedProducts = await Promise.all(featuredProductsPromises);
   const featuredProducts = resolvedProducts.filter(product => product !== null) as Product[];
 
+  // Duplicate products for seamless animation if there are products
+  const duplicatedFeaturedProducts = featuredProducts.length > 0 ? [...featuredProducts, ...featuredProducts] : [];
+
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -198,12 +202,12 @@ export default async function Home() {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url('/banner.png')",
+            backgroundImage: "url('/img/banner.png')", // Ensure this image exists in public/img
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 z-5 bg-black/50"></div> {/* Overlay for darkening and blur */}
+        <div className="absolute inset-0 z-5 bg-black/50 backdrop-blur-sm"></div> {/* Overlay for darkening and blur */}
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
             Custom Rugs, Crafted by EUROSER
@@ -217,18 +221,27 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Products Section - Auto-scrolling Carousel */}
       <section className="py-16 bg-card">
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Blank Rugs</h2>
           {featuredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+            <div className="overflow-hidden w-full relative"> {/* Carousel container - clips content */}
+              <div
+                className="flex animate-marquee hover:animate-pause" // Inner wrapper for scrolling items
+              >
+                {duplicatedFeaturedProducts.map((product, index) => (
+                  <div 
+                    key={`${product.id}-${index}`} 
+                    className="flex-shrink-0 w-full sm:w-1/2 lg:w-[calc(100%/3)] px-2" // Each item takes ~1/3 width on large screens
+                  >
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
             </div>
           ) : (
-            <p className="col-span-full text-center text-muted-foreground">
+            <p className="text-center text-muted-foreground">
               Featured products are currently unavailable.
             </p>
           )}

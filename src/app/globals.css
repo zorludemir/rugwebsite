@@ -98,4 +98,30 @@ body {
   .container {
     @apply max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  /* Film strip carousel animation */
+  .animate-marquee {
+    animation: marquee 30s linear infinite; /* Adjust duration for speed (e.g., 20s for faster, 40s for slower) */
+  }
+
+  .hover\:animate-pause:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      /* This scrolls one full set of the original items.
+         If you have N original items, and you duplicate them (so 2N total items in the flex container),
+         and each item takes up (1/K) of the viewport width (e.g., K=3 for 3 visible items),
+         the total width of the flex container is (2N/K) * viewport_width.
+         We want to translate by the width of N items, which is (N/K) * viewport_width.
+         translateX(-50%) works because the animated element (the flex container)
+         has a total width equivalent to two sets of the original items.
+         So, -50% of its own width is exactly the width of one set of original items. */
+      transform: translateX(-50%);
+    }
+  }
 }
