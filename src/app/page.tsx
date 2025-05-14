@@ -129,7 +129,7 @@ const OurQualityCommitment = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
           <Image
-            src="/img/vibrant_printed_rug.jpg"
+            src="/img/vibrant_printed_rug.png"
             alt="Vibrant printed rug detail"
             layout="fill"
             objectFit="cover"
