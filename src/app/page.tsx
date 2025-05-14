@@ -148,45 +148,13 @@ const OurQualityCommitment = () => (
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
-          <CardHeader>
-            <CardTitle className="text-xl">Area Rugs</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">
-              Durable top layer for vibrant printing, non-slip backing options. Designed for foot traffic and everyday use.
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
-          <CardHeader>
-            <CardTitle className="text-xl">Runner Rugs</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">
-              Perfect for hallways and narrow spaces. Customizable lengths and durable materials.
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="bg-card hover:shadow-xl transition-shadow duration-300">
-          <CardHeader>
-            <CardTitle className="text-xl">Accent Rugs</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">
-              Variety of shapes (round, square, custom) to add a unique touch to any room. Prints remain vibrant.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
      </div>
    </section>
 );
 
 
 export default async function Home() {
-  const featuredProductSlugs = ['damla', 'inci', 'bambu', 'ametis', 'şönil', 'bulut'];
+  const featuredProductSlugs = ['damla', 'inci', 'bambu', 'ametis', 'sonil', 'bulut']; // Corrected 'şönil' to 'sonil'
   const featuredProductsPromises = featuredProductSlugs.map(slug => getProductBySlug(slug));
   const resolvedProducts = await Promise.all(featuredProductsPromises);
   const featuredProducts = resolvedProducts.filter(product => product !== null) as Product[];
