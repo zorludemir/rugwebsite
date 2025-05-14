@@ -186,7 +186,7 @@ const OurQualityCommitment = () => (
 
 
 export default async function Home() {
-  const featuredProductSlugs = ['damla', 'inci', 'bambu'];
+  const featuredProductSlugs = ['damla', 'inci', 'bambu', 'ametis', 'şönil', 'bulut'];
   const featuredProductsPromises = featuredProductSlugs.map(slug => getProductBySlug(slug));
   const resolvedProducts = await Promise.all(featuredProductsPromises);
   const featuredProducts = resolvedProducts.filter(product => product !== null) as Product[];

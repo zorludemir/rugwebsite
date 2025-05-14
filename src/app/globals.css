@@ -101,7 +101,7 @@ body {
 
   /* Film strip carousel animation */
   .animate-marquee {
-    animation: marquee 30s linear infinite; /* Adjust duration for speed (e.g., 20s for faster, 40s for slower) */
+    animation: marquee 20s linear infinite; /* Adjust duration for speed (e.g., 20s for faster, 40s for slower) */
   }
 
   .hover\:animate-pause:hover {

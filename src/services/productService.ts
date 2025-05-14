@@ -34,7 +34,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Damla',
     description: 'Damla rug featuring 980,000 loops, 8 mm pile height, and a Jute & Cotton base. Weighs 2,300 gr/m².',
     images: [
-      '/img/damla1.jpg',
+      '/img/damla/1.jpg',
+      '/img/damla/2.jpg',
+      '/img/damla/3.jpg',
+      '/img/damla/4.jpg',
     ],
     sizes: [
       { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -61,7 +64,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Ametis',
     description: 'Ametis rug featuring 680,000 loops, 7 mm pile height, and a Cotton base. Weighs 2,300 gr/m².',
     images: [
-      '/img/ametis1.jpg',
+      '/img/ametis/1.jpg',
+      '/img/ametis/2.jpg',
+      '/img/ametis/3.jpg',
+      '/img/ametis/4.jpg',
     ],
     sizes: [
       { id: 'ametis-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -88,7 +94,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Bulut',
     description: 'Bulut rug featuring 480,000 loops, 8 mm pile height, and a Jute & Cotton base. Weighs 2,100 gr/m².',
     images: [
-      '/img/bulut1.jpg',
+      '/img/bulut/1.jpg',
+      '/img/bulut/2.jpg',
+      '/img/bulut/3.jpg',
+      '/img/bulut/4.jpg',
     ],
     sizes: [
       { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -115,7 +124,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Puffy',
     description: 'Puffy rug with a 6 mm pile height and a Non-slip Polyester base. Weighs 850 gr/m².',
     images: [
-      '/img/puffy1.jpg',
+      '/img/puffy/1.jpg',
+      '/img/puffy/2.jpg',
+      '/img/puffy/3.jpg',
+      '/img/puffy/4.jpg',
     ],
     sizes: [
       { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -141,7 +153,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Venus',
     description: 'Venus rug with a 9 mm pile height and a Non-slip Cotton base. Weighs 1,200 gr/m².',
     images: [
-      '/img/venus1.jpg',
+      '/img/venus/1.jpg',
+      '/img/venus/2.jpg',
+      '/img/venus/3.jpg',
+      '/img/venus/4.jpg',
     ],
     sizes: [
       { id: 'venus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -167,7 +182,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Bambu',
     description: 'Bambu rug with a 4 mm pile height and a Non-slip Polyester base. Weighs 830 gr/m².',
     images: [
-      '/img/bambu1.jpg',
+      '/img/bambu/1.jpg',
+      '/img/bambu/2.jpg',
+      '/img/bambu/3.jpg',
+      '/img/bambu/4.jpg',
     ],
     sizes: [
       { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -193,7 +211,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Garden',
     description: 'Garden rug with an 8 mm total height and a Felt base. Weighs 1,700 gr/m².',
     images: [
-      '/img/garden1.jpg',
+      '/img/garden/1.jpg',
+      '/img/garden/2.jpg',
+      '/img/garden/3.jpg',
+      '/img/garden/4.jpg',
     ],
     sizes: [
       { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -219,7 +240,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Şönil',
     description: 'Şönil (Chenille) rug with a 5 mm pile height and a Non-slip Cotton base. Weighs 1,600 gr/m².',
     images: [
-      '/img/sonil1.jpg',
+      '/img/sonil/1.jpg',
+      '/img/sonil/2.jpg',
+      '/img/sonil/3.jpg',
+      '/img/sonil/4.jpg',
     ],
     sizes: [
       { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -245,7 +269,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'İnci',
     description: 'İnci (Pearl) rug with a 6 mm pile height and a Non-slip Polyester base. Weighs 850 gr/m².',
     images: [
-      '/img/inci1.jpg',
+      '/img/inci/1.jpg',
+      '/img/inci/2.jpg',
+      '/img/inci/3.jpg',
+      '/img/inci/4.jpg',
     ],
     sizes: [
       { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -271,7 +298,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Goblen',
     description: 'Goblen (Tapestry) rug with a 6 mm pile height and a Non-slip Thermo base. Weighs 1,250 gr/m².',
     images: [
-      '/img/goblen1.jpg',
+      '/img/goblen/1.jpg',
+      '/img/goblen/2.jpg',
+      '/img/goblen/3.jpg',
+      '/img/goblen/4.jpg',
     ],
     sizes: [
       { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -297,7 +327,10 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     name: 'Elegant',
     description: 'Elegant rug with a 7 mm pile height and a Thermo Non-slip base. Weighs 2,100 gr/m².',
     images: [
-      '/img/elegant1.jpg',
+      '/img/elegant/1.jpg',
+      '/img/elegant/2.jpg',
+      '/img/elegant/3.jpg',
+      '/img/elegant/4.jpg',
     ],
     sizes: [
       { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -381,3 +414,4 @@ export const productCategories = [
   { value: 'runner', label: 'Runners' },
   { value: 'shag', label: 'Shag Rugs'}
 ];
+
