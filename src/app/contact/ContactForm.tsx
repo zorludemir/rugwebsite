@@ -54,23 +54,21 @@ export default function ContactForm() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // In a real app, you would send the data to your backend here.
-    // For example:
-    // try {
-    //   const response = await fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(values),
-    //   });
-    //   if (!response.ok) throw new Error('Network response was not ok');
-    //   toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon." });
-    //   form.reset();
-    // } catch (error) {
-    //   console.error('Failed to send message:', error);
-    //   toast({ variant: "destructive", title: "Error", description: "Failed to send message. Please try again later." });
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+    try {
+       const response = await fetch('/api/contact', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(values),
+       });
+       if (!response.ok) throw new Error('Network response was not ok');
+       toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon." });
+       form.reset();
+     } catch (error) {
+       console.error('Failed to send message:', error);
+       toast({ variant: "destructive", title: "Error", description: "Failed to send message. Please try again later." });
+     } finally {
+       setIsSubmitting(false);
+     }
 
      // Placeholder success simulation:
     toast({
