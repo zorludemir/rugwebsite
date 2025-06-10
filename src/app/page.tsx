@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -154,7 +153,7 @@ const OurQualityCommitment = () => (
 
 
 export default async function Home() {
-  const featuredProductSlugs = ['inci','goblen','puffy']; // Corrected 'şönil' to 'sonil'
+  const featuredProductSlugs = ['inci','goblen','puffy'];
   const featuredProductsPromises = featuredProductSlugs.map(slug => getProductBySlug(slug));
   const resolvedProducts = await Promise.all(featuredProductsPromises);
   const featuredProducts = resolvedProducts.filter(product => product !== null) as Product[];
@@ -178,10 +177,10 @@ export default async function Home() {
         <div className="absolute inset-0 z-5 bg-black/50 backdrop-blur-sm"></div> {/* Overlay for darkening and blur */}
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-            Custom Rugs, Crafted by EUROSER
+            Custom Rugs, Crafted by EuroserPOD
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground mb-10 max-w-3xl mx-auto drop-shadow-sm">
-            High-quality, personalized printing on a variety of blank rugs. Bring your designs to life with EUROSER.
+            High-quality, personalized printing on a variety of blank rugs. Bring your designs to life with EuroserPOD.
           </p>
           <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
             <Link href="/products">Explore Blank Rugs</Link>
@@ -197,6 +196,7 @@ export default async function Home() {
             <div className="overflow-hidden w-full relative"> {/* Carousel container - clips content */}
               <div
                 className="flex animate-marquee hover:animate-pause" // Inner wrapper for scrolling items
+                style={{ animation: `marquee ${duplicatedFeaturedProducts.length * 5}s linear infinite` }}
               >
                 {duplicatedFeaturedProducts.map((product, index) => (
                   <div 
@@ -232,7 +232,7 @@ export default async function Home() {
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Design Your Custom Rug?</h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-            Contact us today to discuss your ideas and get a quote for your EUROSER rug.
+            Contact us today to discuss your ideas and get a quote for your EuroserPOD rug.
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
             <Link href="/contact">Get in Touch</Link>
