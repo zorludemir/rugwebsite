@@ -1,10 +1,6 @@
 import ContactForm from './ContactForm';
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin } from 'lucide-react';
-import GoogleMapEmbed from './GoogleMapEmbed';
-
-// Placeholder location - Replace with actual factory coordinates
-const factoryLocation = { lat: 34.0522, lng: -118.2437 }; // Example: Los Angeles City Hall
 
 export default function ContactPage() {
   return (
@@ -33,15 +29,7 @@ export default function ContactPage() {
                   <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-medium text-foreground">Address</h3>
-                    <p>123 Euroser St, Textile City, TC 12345</p> {/* Replace with actual address */}
-                    <a
-                     href={`https://www.google.com/maps/search/?api=1&query=${factoryLocation.lat},${factoryLocation.lng}`}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-accent hover:underline text-sm"
-                    >
-                      Get Directions
-                    </a>
+                    <p>Kayseri OSB, 12. Cadde NO:31, 38070, 38070 Melikgazi/Kayseri</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -63,9 +51,17 @@ export default function ContactPage() {
           </Card>
 
           <Card className="bg-card overflow-hidden">
-             <CardContent className="p-0">
-                <GoogleMapEmbed location={factoryLocation} />
-             </CardContent>
+            <CardContent className="p-0">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.6639761631195!2d35.367564699999996!3d38.7255231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152b053c3c93db4b%3A0x14341f503c2e57cf!2sHALISER%20T%C4%B0CARET!5e0!3m2!1str!2str!4v1749534345051!5m2!1str!2str"
+                width="600" 
+                height="450" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </CardContent>
           </Card>
         </div>
       </div>
