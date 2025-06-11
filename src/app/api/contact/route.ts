@@ -8,8 +8,8 @@ const client = new MongoClient(uri);
 async function saveContactMessage(data: OptionalId<Document>) {
   try {
     await client.connect();
-    const database = client.db("euroserPOD");
-    const collection = database.collection("Forms");
+    const database = client.db("deneme");
+    const collection = database.collection("forms");
     await collection.insertOne(data);
   } finally {
     await client.close();
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     // E-posta gönder
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
+      host: 'smtp.gmail.com',
       port: Number(process.env.EMAIL_PORT),
       secure: false, // TLS kullanımı için false
       auth: {
