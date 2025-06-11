@@ -1,6 +1,7 @@
-
+"use client";
 import Image from 'next/image';
 import { Separator } from "@/components/ui/separator";
+import WorldMapWithMarkers from '@/components/WorldMapWithMarkers';
 
 // Content for Our Story
 const OurStory = () => (
@@ -16,7 +17,7 @@ const OurStory = () => (
     </div>
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
-        src="/img/factory.jpg" // Updated path
+        src="/img/factory.jpg"
         alt="EUROSER Workshop"
         layout="fill"
         objectFit="cover"
@@ -35,15 +36,24 @@ export default function AboutPage() {
       {/* Our Story Section */}
       <OurStory />
 
-      <Separator className="my-16 md:my-24" />
+      
 
-      <div className="text-center bg-card p-8 rounded-lg shadow-md">
+      
+
+      {/* World Map Section */}
+      <div className="mt-16">
+        <h2 className="text-3xl font-semibold text-center mb-4">Our Global Reach</h2>
+        <p className="text-lg text-muted-foreground text-center mb-8">
+          We have delivered rugs to customers all around the world. Explore our global presence below.
+        </p>
+        <WorldMapWithMarkers />
+      </div>
+<div className="text-center bg-card p-8 rounded-lg shadow-md">
         <h3 className="text-2xl font-semibold mb-4">Our Commitment</h3>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           At EUROSER, we are dedicated to delivering exceptional quality and innovative solutions for all your custom rug printing needs. Our focus on craftsmanship, customer satisfaction, and sustainable practices drives everything we do.
         </p>
       </div>
-
     </div>
   );
 }
