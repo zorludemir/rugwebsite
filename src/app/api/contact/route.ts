@@ -1,36 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import nodemailer from "nodemailer";
+import { Document, MongoClient, OptionalId } from "mongodb";
 
-const prisma = new PrismaClient();
+const uri = process.env.MONGODB_URI || "your-mongodb-connection-string";
+const client = new MongoClient(uri);
+
+async function saveContactMessage(data: OptionalId<Document>) {
+  try {
+    await client.connect();
+    const database = client.db("euroserPOD");
+    const collection = database.collection("Forms");
+    await collection.insertOne(data);
+  } finally {
+    await client.close();
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
     const { name, email, subject, message } = data;
+    await saveContactMessage({ name, email, subject, message });
 
-    // 1. Veritabanına kaydet
-    await prisma.contactMessage.create({
-      data: { name, email, subject, message },
-    });
+    console.log("Data saved to database");
 
-    // 2. E-posta gönder
+    // E-posta gönder
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
-      secure: false,
+      secure: false, // TLS kullanımı için false
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false, // Sertifika doğrulamasını devre dışı bırak
+      },
     });
 
     await transporter.sendMail({
-      from: `"Web Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // Kendinize veya başka birine gönderebilirsiniz
+      from: `\"Web Contact\" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
       subject: `Yeni İletişim Mesajı: ${subject}`,
       text: `Ad: ${name}\nE-posta: ${email}\nKonu: ${subject}\nMesaj: ${message}`,
     });
+
+    console.log("Email sent successfully");
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

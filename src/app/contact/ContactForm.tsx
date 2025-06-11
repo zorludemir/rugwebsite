@@ -47,39 +47,38 @@ export default function ContactForm() {
     },
   });
 
- async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     console.log("Form submitted:", values);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
     try {
-       const response = await fetch('/api/contact', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(values),
-       });
-       if (!response.ok) throw new Error('Network response was not ok');
-       toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon." });
-       form.reset();
-     } catch (error) {
-       console.error('Failed to send message:', error);
-       toast({ variant: "destructive", title: "Error", description: "Failed to send message. Please try again later." });
-     } finally {
-       setIsSubmitting(false);
-     }
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
 
-     // Placeholder success simulation:
-    toast({
+      console.log("Response status:", response.status);
+      console.log("Response body:", await response.text());
+
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      toast({
         title: "Message Sent!",
         description: "Thank you for contacting us. We'll get back to you soon.",
-        duration: 5000,
       });
-    form.reset(); // Reset form fields after successful submission
-    setIsSubmitting(false);
+      form.reset();
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
-
 
   return (
     <Form {...form}>
