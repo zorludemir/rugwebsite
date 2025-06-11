@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: `\"Web Contact\" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // Gönderilecek kişinin maili buraya girilmeli, input olarak da alınabilir
       subject: `Yeni İletişim Mesajı: ${subject}`,
       text: `Ad: ${name}\nE-posta: ${email}\nKonu: ${subject}\nMesaj: ${message}`,
     });
