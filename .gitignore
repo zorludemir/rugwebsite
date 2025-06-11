@@ -16,8 +16,6 @@
 /build
 
 # dotenv environment variables file
-.env*.local
-.env
 
 # Debug log files
 npm-debug.log*
