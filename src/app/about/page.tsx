@@ -1,6 +1,5 @@
 "use client";
 import Image from 'next/image';
-import { Separator } from "@/components/ui/separator";
 import dynamic from 'next/dynamic';
 
 const WorldMapWithMarkers = dynamic(() => import('@/components/WorldMapWithMarkers'), { ssr: false });

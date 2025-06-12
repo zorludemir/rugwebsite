@@ -1,9 +1,8 @@
-
 export interface ProductSize {
   id: string;
   label: string; // e.g., "Small (4x6 ft)"
   dimensions: string; // e.g., "4x6 ft"
-  priceModifier: number; // e.g., 0 for base, 50 for +$50 from basePrice
+  priceModifier?: number; // e.g., 0 for base, 50 for +$50 from basePrice
 }
 
 export interface Product {

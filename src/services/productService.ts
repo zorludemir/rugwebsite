@@ -3,7 +3,6 @@ import type { Product, ProductSize } from '@/types/product';
 // Prices per square meter for each product model
 const pricesPerSqMeter: Record<string, number> = {
   'damla': 74.82,
-  'ametis': 68.73,
   'bulut': 64.19,
   'puffy': 47.01,
   'venus': 43.70,
@@ -13,6 +12,10 @@ const pricesPerSqMeter: Record<string, number> = {
   'inci': 23.94,
   'goblen': 39.37,
   'elegant': 56.45,
+  'bukle': 50.00, // Example price
+  'ekobambu': 55.00, // Example price
+  'okyanus': 60.00, // Example price
+  'rubbermat': 30.00, // Example price
 };
 
 // Helper function to calculate area from dimensions string "WIDTHxHEIGHT cm"
@@ -26,7 +29,7 @@ function calculateAreaInSqM(dimensions: string): number {
 }
 
 // Raw product data without pre-calculated prices
-const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<ProductSize, 'priceModifier'>[] }[] = [
+const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, 'priceModifier'>[] })[] = [
   {
     id: 'damla-rug',
     slug: 'damla',
@@ -36,7 +39,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/damla/damla1.jpg',
       '/img/damla/damla2.jpg',
       '/img/damla/damla3.jpg',
-      '/img/damla/damla4.jpg',
     ],
     sizes: [
       { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -66,7 +68,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/bulut/bulut1.jpg',
       '/img/bulut/bulut2.jpg',
       '/img/bulut/bulut3.jpg',
-      '/img/bulut/bulut4.jpg',
     ],
     sizes: [
       { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -96,7 +97,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/puffy/puffy1.jpg',
       '/img/puffy/puffy2.jpg',
       '/img/puffy/puffy3.jpg',
-      '/img/puffy/puffy4.jpg',
     ],
     sizes: [
       { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -125,7 +125,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/bambu/bambu1.jpg',
       '/img/bambu/bambu2.jpg',
       '/img/bambu/bambu3.jpg',
-      '/img/bambu/bambu4.jpg',
     ],
     sizes: [
       { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -154,7 +153,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/garden/garden1.jpg',
       '/img/garden/garden2.jpg',
       '/img/garden/garden3.jpg',
-      '/img/garden/garden4.jpg',
     ],
     sizes: [
       { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -183,7 +181,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/sonil/sonil1.jpg',
       '/img/sonil/sonil2.jpg',
       '/img/sonil/sonil3.jpg',
-      '/img/sonil/sonil4.jpg',
     ],
     sizes: [
       { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -212,7 +209,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/inci/inci1.jpg',
       '/img/inci/inci2.jpg',
       '/img/inci/inci3.jpg',
-      '/img/inci/inci4.jpg',
     ],
     sizes: [
       { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -241,7 +237,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/goblen/goblen1.jpg',
       '/img/goblen/goblen2.jpg',
       '/img/goblen/goblen3.jpg',
-      '/img/goblen/goblen4.jpg',
     ],
     sizes: [
       { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -270,7 +265,6 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
       '/img/elegant/elegant1.jpg',
       '/img/elegant/elegant2.jpg',
       '/img/elegant/elegant3.jpg',
-      '/img/elegant/elegant4.jpg',
     ],
     sizes: [
       { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
@@ -291,31 +285,88 @@ const rawProductData: Omit<Product, 'basePrice' | 'sizes'> & { sizes: Omit<Produ
     aiHint: 'Elegant rug thermo',
   },
   {
+    id: 'bukle-rug',
+    slug: 'bukle',
+    name: 'Bukle',
+    description: 'Bukle rug with a soft texture and durable material.',
+    images: [
+      '/img/bukle/bukle1.jpg',
+      '/img/bukle/bukle2.jpg',
+    ],
+    sizes: [
+      { id: 'bukle-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'bukle-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+    ],
+    defaultSizeId: 'bukle-80x150',
+    material: 'Durable Material',
+    shape: 'Rectangular',
+    category: 'rectangular',
+    features: ['Soft Texture', 'Durable Material'],
+    careInstructions: 'Vacuum regularly.',
+    aiHint: 'Bukle rug',
+  },
+  {
+    id: 'ekobambu-rug',
+    slug: 'ekobambu',
+    name: 'Eko Bambu',
+    description: 'Eco-friendly bamboo rug with a natural finish.',
+    images: [
+      '/img/ekobambu/ekobambu1.jpg',
+      '/img/ekobambu/ekobambu2.jpg',
+    ],
+    sizes: [
+      { id: 'ekobambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'ekobambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+    ],
+    defaultSizeId: 'ekobambu-80x150',
+    material: 'Bamboo',
+    shape: 'Rectangular',
+    category: 'rectangular',
+    features: ['Eco-friendly', 'Natural Finish'],
+    careInstructions: 'Wipe with a damp cloth.',
+    aiHint: 'Eco bamboo rug',
+  },
+  {
+    id: 'okyanus-rug',
+    slug: 'okyanus',
+    name: 'Okyanus',
+    description: 'Okyanus rug with a wave-like pattern and vibrant colors.',
+    images: [
+      '/img/okyanus/okyanus1.jpg',
+      '/img/okyanus/okyanus2.jpg',
+    ],
+    sizes: [
+      { id: 'okyanus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'okyanus-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+    ],
+    defaultSizeId: 'okyanus-80x150',
+    material: 'Polyester',
+    shape: 'Rectangular',
+    category: 'rectangular',
+    features: ['Wave-like Pattern', 'Vibrant Colors'],
+    careInstructions: 'Spot clean only.',
+    aiHint: 'Wave pattern rug',
+  },
+  {
     id: 'rubbermat-rug',
     slug: 'rubbermat',
-    name: 'Rubbermat',
-    description: 'PVC tabanlı, kaymaz özellikli paspas. Dayanıklı ve kolay temizlenir.',
+    name: 'Rubber Mat',
+    description: 'Durable rubber mat for indoor and outdoor use.',
     images: [
       '/img/rubbermat/rubbermat1.jpg',
       '/img/rubbermat/rubbermat2.jpg',
-      '/img/rubbermat/rubbermat3.jpg',
     ],
     sizes: [
-      { id: 'rubbermat-50x80', label: '50x80 cm', dimensions: '50cm x 80cm' },
-      { id: 'rubbermat-60x90', label: '60x90 cm', dimensions: '60cm x 90cm' },
-      { id: 'rubbermat-80x120', label: '80x120 cm', dimensions: '80cm x 120cm' },
+      { id: 'rubbermat-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
+      { id: 'rubbermat-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
     ],
-    defaultSizeId: 'rubbermat-50x80',
-    material: 'PVC Taban',
+    defaultSizeId: 'rubbermat-80x150',
+    material: 'Rubber',
     shape: 'Rectangular',
     category: 'rectangular',
-    features: [
-      'Kaymaz PVC Taban',
-      'Kolay Temizlenir',
-      'Dayanıklı Malzeme',
-    ],
-    careInstructions: 'Nemli bez ile siliniz. Ağır kimyasal kullanmayınız.',
-    aiHint: 'PVC tabanlı paspas rubbermat',
+    features: ['Durable', 'Non-slip'],
+    careInstructions: 'Wash with water.',
+    aiHint: 'Rubber mat',
   },
 ];
 
