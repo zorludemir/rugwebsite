@@ -9,7 +9,7 @@ async function saveContactMessage(data: OptionalId<Document>) {
   try {
     await client.connect();
     const database = client.db("euroserPOD");
-    const collection = database.collection("Forms");
+    const collection = database.collection("forms");
     await collection.insertOne(data);
   } finally {
     await client.close();
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     // E-posta gönder
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
+      host: 'smtp.gmail.com',
       port: Number(process.env.EMAIL_PORT),
       secure: false, // TLS kullanımı için false
       auth: {
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: `\"Web Contact\" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: email, // Gönderilecek kişinin maili buraya girilmeli, input olarak da alınabilir
       subject: `Yeni İletişim Mesajı: ${subject}`,
       text: `Ad: ${name}\nE-posta: ${email}\nKonu: ${subject}\nMesaj: ${message}`,
     });
