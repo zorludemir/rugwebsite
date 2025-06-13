@@ -21,6 +21,7 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
   containerWidth: 1,
   containerHeight: 1,
 });
+const [highlightArea, setHighlightArea] = useState({ x: 0, y: 0 });
 
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -43,6 +44,8 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
     containerWidth: rect.width,
     containerHeight: rect.height,
   });
+
+  setHighlightArea({ x, y });
 };
 
 
@@ -87,6 +90,17 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
                 priority // Prioritize loading for the main image
                 unoptimized={selectedImage.startsWith('http')} // Add this if you might still use external URLs
               />
+              {zoomedImage && (
+                <div
+                  className="absolute rounded-full border border-gray-300 bg-white/50 pointer-events-none"
+                  style={{
+                    width: '150px',
+                    height: '150px',
+                    top: highlightArea.y - 75,
+                    left: highlightArea.x - 75,
+                  }}
+                ></div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -116,19 +130,18 @@ export default function ImageGallery({ images, altText }: ImageGalleryProps) {
         )}
       </div>
       {zoomedImage && (
-  <div
-    className="fixed w-72 h-72 border border-gray-300 overflow-hidden z-50 pointer-events-none rounded shadow-lg"
-    style={{
-      top: cursorPosition.y - 275,  // fareden yukarıya
-      left: cursorPosition.x + 10, // fareden sağa
-      backgroundImage: `url(${zoomedImage})`,
-      backgroundSize: '500%', // zoom oranı
-      backgroundPosition: `${(backgroundOffset.x / backgroundOffset.containerWidth) * 100}% ${(backgroundOffset.y / backgroundOffset.containerHeight) * 100}%`,
-      backgroundRepeat: 'no-repeat',
-    }}
-  />
-)}
-
+        <div
+          className="absolute w-96 h-96 border border-gray-300 overflow-hidden z-50 pointer-events-none rounded shadow-lg"
+          style={{
+            top: '0',
+            right: '-400px',
+            backgroundImage: `url(${zoomedImage})`,
+            backgroundSize: '1600px 1200px',
+            backgroundPosition: `-${highlightArea.x * 2}px -${highlightArea.y * 2}px`,
+            backgroundRepeat: 'no-repeat',
+          }}
+        ></div>
+      )}
     </>
   );
 }
