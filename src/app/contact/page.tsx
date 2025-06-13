@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 export default function ContactPage() {
   return (
     <div className="container py-12 md:py-20">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Contact EUROSER</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Contact EuroserPOD</h1>
       <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
         We'd love to hear from you! Whether you have a question about our custom rug services or want to start a project, feel free to reach out.
       </p>
@@ -43,7 +43,7 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-medium text-foreground">Email</h3>
-                    <a href="mailto:info@euroser.com" className="hover:text-accent">info@euroser.com</a> {/* Replace with actual email */}
+                    <a href="mailto:info@euroserpod.com" className="hover:text-accent">info@euroserpod.com</a> {/* Replace with actual email */}
                   </div>
                 </div>
               </div>

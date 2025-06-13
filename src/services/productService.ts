@@ -16,6 +16,7 @@ const pricesPerSqMeter: Record<string, number> = {
   'ekobambu': 55.00, // Example price
   'okyanus': 60.00, // Example price
   'rubbermat': 30.00, // Example price
+  'towel': 35.00, // Example price
 };
 
 // Helper function to calculate area from dimensions string "WIDTHxHEIGHT cm"
@@ -367,6 +368,34 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
     features: ['Durable', 'Non-slip'],
     careInstructions: 'Wash with water.',
     aiHint: 'Rubber mat',
+  },
+  {
+    id: 'towel-product',
+    slug: 'towel',
+    name: 'Towel',
+    description: 'High-quality towel with soft texture and excellent absorbency.',
+    images: [
+      '/img/towel/towel1.jpg',
+      '/img/towel/towel2.jpg',
+      '/img/towel/towel3.jpg',
+      '/img/towel/towel4.jpg',
+    ],
+    sizes: [
+      { id: 'towel-50x100', label: '50x100 cm', dimensions: '50cm x 100cm' },
+      { id: 'towel-70x140', label: '70x140 cm', dimensions: '70cm x 140cm' },
+      { id: 'towel-100x180', label: '100x180 cm', dimensions: '100cm x 180cm' },
+    ],
+    defaultSizeId: 'towel-50x100',
+    material: 'Cotton',
+    shape: 'Rectangular',
+    category: 'rectangular',
+    features: [
+      'Soft Texture',
+      'Excellent Absorbency',
+      'Durable Material',
+    ],
+    careInstructions: 'Machine wash warm. Tumble dry low.',
+    aiHint: 'Towel product',
   },
 ];
 

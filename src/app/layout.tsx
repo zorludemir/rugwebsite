@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -18,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'EUROSER | Custom Rug Printing',
-  description: 'High-quality custom printing on blank rugs. Design your own rug with EUROSER.',
+  title: 'EuroserPOD | Custom Rug Printing',
+  description: 'High-quality custom printing on blank rugs. Design your own rug with EuroserPOD.',
 };
 
 export default function RootLayout({

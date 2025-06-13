@@ -1,4 +1,3 @@
-
 import { getProductBySlug, getAllProductSlugs } from '@/services/productService';
 import type { Product, ProductSize } from '@/types/product';
 import ImageGallery from '@/components/products/ImageGallery';
@@ -29,7 +28,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${product.name} | EUROSER`,
+    title: `${product.name} | EuroserPOD`,
     description: product.description.substring(0, 160), // Keep it concise for meta description
     openGraph: {
       title: product.name,
@@ -86,11 +85,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </p>
 
           {/* Client component for size selection and price updates */}
-          <SizePriceSelectorClient 
-            basePrice={product.basePrice} 
-            sizes={product.sizes}
-            defaultSizeId={product.defaultSizeId}
-          />
+          
 
           {product.features && product.features.length > 0 && (
             <Card>
@@ -120,7 +115,11 @@ export default async function ProductDetailPage({ params }: Props) {
               </CardContent>
             </Card>
           )}
-          
+          <SizePriceSelectorClient 
+            basePrice={product.basePrice} 
+            sizes={product.sizes}
+            defaultSizeId={product.defaultSizeId}
+          />
           <div className="pt-4">
              <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Add to Quote Request (Print Design)</Button>
              <p className="text-xs text-muted-foreground mt-2 text-center">
@@ -136,7 +135,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-4">Need a Custom Print?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-            EUROSER specializes in printing your unique designs on our high-quality blank rugs. Let's bring your vision to life.
+            EuroserPOD specializes in printing your unique designs on our high-quality blank rugs. Let's bring your vision to life.
         </p>
         <Button asChild variant="outline">
             <Link href="/contact">Contact Us for a Custom Quote</Link>

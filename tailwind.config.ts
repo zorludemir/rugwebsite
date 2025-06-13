@@ -10,35 +10,23 @@ export default {
   theme: {
   	extend: {
   		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
+  			background: '#FFFFFF', // White background
+  			foreground: '#000000', // Black foreground
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				DEFAULT: '#008000', // Green primary color
+  				foreground: '#FFFFFF', // White text on green buttons
   			},
   			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
+  				DEFAULT: '#FFFFFF', // White secondary color
+  				foreground: '#008000', // Green text on white background
   			},
   			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
+  				DEFAULT: '#008000', // Green accent color
+  				foreground: '#FFFFFF', // White text on green accent
   			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
+  			muted: {
+  				DEFAULT: '#FFFFFF', // White muted color
+  				foreground: '#000000', // Black text on muted background
   			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',

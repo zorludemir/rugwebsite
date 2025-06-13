@@ -10,7 +10,7 @@ const OurStory = () => (
     <div>
       <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
       <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-        Founded with a passion for quality and creativity, EUROSER started as a small workshop dedicated to bringing custom designs to life on high-quality rug canvases. Over the years, we've grown into a state-of-the-art facility, but our core commitment to craftsmanship and customer satisfaction remains unchanged.
+        Founded with a passion for quality and creativity, EuroserPOD started as a small workshop dedicated to bringing custom designs to life on high-quality rug canvases. Over the years, we've grown into a state-of-the-art facility, but our core commitment to craftsmanship and customer satisfaction remains unchanged.
       </p>
       <p className="text-lg text-muted-foreground leading-relaxed">
         We believe that personalization adds a unique touch to homes and lives. Our mission is to provide businesses and individuals with premium, custom-printed rugs that stand out.
@@ -19,7 +19,7 @@ const OurStory = () => (
     <div className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
       <Image
         src="/img/factory.jpg"
-        alt="EUROSER Workshop"
+        alt="EuroserPOD Workshop"
         layout="fill"
         objectFit="cover"
         className="transition-transform duration-300 ease-in-out hover:scale-105"
@@ -32,7 +32,7 @@ const OurStory = () => (
 export default function AboutPage() {
   return (
     <div className="container py-12 md:py-20">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">About EUROSER</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">About EuroserPOD</h1>
 
       {/* Our Story Section */}
       <OurStory />
@@ -52,7 +52,7 @@ export default function AboutPage() {
 <div className="text-center bg-card p-8 rounded-lg shadow-md">
         <h3 className="text-2xl font-semibold mb-4">Our Commitment</h3>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          At EUROSER, we are dedicated to delivering exceptional quality and innovative solutions for all your custom rug printing needs. Our focus on craftsmanship, customer satisfaction, and sustainable practices drives everything we do.
+          At EuroserPOD, we are dedicated to delivering exceptional quality and innovative solutions for all your custom rug printing needs. Our focus on craftsmanship, customer satisfaction, and sustainable practices drives everything we do.
         </p>
       </div>
     </div>

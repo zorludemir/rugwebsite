@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { ProductSize } from '@/types/product';
@@ -23,10 +22,10 @@ export default function SizePriceSelector({
 }: SizePriceSelectorProps) {
   const initialSize = sizes.find(s => s.id === defaultSizeId) || sizes[0];
   const [selectedSize, setSelectedSize] = useState<ProductSize>(initialSize);
-  const [currentPrice, setCurrentPrice] = useState(basePrice + (initialSize?.priceModifier || 0));
+  const [currentPrice, setCurrentPrice] = useState(basePrice + (initialSize?.priceModifier ?? 0));
 
   useEffect(() => {
-    const newPrice = basePrice + selectedSize.priceModifier;
+    const newPrice = basePrice + (selectedSize.priceModifier ?? 0);
     setCurrentPrice(newPrice);
     onSizeChange(selectedSize, newPrice);
   }, [selectedSize, basePrice, onSizeChange]);
@@ -40,13 +39,11 @@ export default function SizePriceSelector({
 
   if (!sizes || sizes.length === 0) {
     return (
-        <div className="mt-6">
-            <p className="text-3xl font-bold text-foreground">${basePrice.toFixed(2)}</p>
-            <p className="text-sm text-muted-foreground mt-1">Standard size</p>
-        </div>
+      <div className="mt-6">
+        <p className="text-muted-foreground">No sizes available.</p>
+      </div>
     );
   }
-
 
   return (
     <Card>
@@ -60,24 +57,25 @@ export default function SizePriceSelector({
           onValueChange={handleSizeChange}
           className="space-y-2"
         >
-          {sizes.map((size) => (
-            <Label
-              key={size.id}
-              htmlFor={size.id}
-              className="flex items-center justify-between p-4 border rounded-md cursor-pointer hover:bg-accent has-[input:checked]:bg-accent has-[input:checked]:border-primary transition-colors"
-            >
-              <div>
-                <span className="font-medium">{size.label}</span>
-                <span className="block text-sm text-muted-foreground">{size.dimensions}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-foreground">
-                  +${size.priceModifier.toFixed(2)}
-                </span>
-                <RadioGroupItem value={size.id} id={size.id} />
-              </div>
-            </Label>
-          ))}
+          {sizes.map((size) => {
+            const sizePrice = basePrice + (size.priceModifier ?? 0);
+            return (
+              <Label
+                key={size.id}
+                htmlFor={size.id}
+                className="flex items-center justify-between p-4 border rounded-md cursor-pointer hover:bg-accent has-[input:checked]:bg-accent has-[input:checked]:border-primary transition-colors"
+              >
+                <div>
+                  <span className="font-medium">{size.label}</span>
+                  <span className="block text-sm text-muted-foreground">{size.dimensions}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-foreground">${sizePrice.toFixed(2)}</span>
+                  <RadioGroupItem value={size.id} id={size.id} />
+                </div>
+              </Label>
+            );
+          })}
         </RadioGroup>
         <Separator />
         <div>

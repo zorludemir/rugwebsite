@@ -1,4 +1,3 @@
-
 import type { Product } from '@/types/product';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,6 +11,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const imageUrl = product.images && product.images.length > 0 ? product.images[0] : '/img/placeholder.jpg';
+  const hoverImageUrl = product.images && product.images.length > 2 ? product.images[2] : imageUrl;
+
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg group">
       <CardHeader className="p-0">
@@ -21,10 +22,21 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             width={600}
             height={450}
-            className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
+            className="object-cover w-full h-full transition-opacity duration-300 ease-in-out group-hover:opacity-0"
             data-ai-hint={product.aiHint || product.category}
             unoptimized={imageUrl.startsWith('http')} // Add this if you might still use external URLs for some products
           />
+          {product.images && product.images.length > 2 && (
+            <Image
+              src={hoverImageUrl}
+              alt={product.name}
+              width={600}
+              height={450}
+              className="object-cover w-full h-full transition-opacity duration-300 ease-in-out group-hover:opacity-100 opacity-0"
+              data-ai-hint={product.aiHint || product.category}
+              unoptimized={hoverImageUrl.startsWith('http')} // Add this if you might still use external URLs for some products
+            />
+          )}
         </Link>
       </CardHeader>
       <CardContent className="flex-grow p-4">
