@@ -5,14 +5,14 @@ import type { Product } from '@/types/product';
 import Link from 'next/link'; // Import Link component
 
 export default async function ProductsPage({ searchParams }: { searchParams?: { category?: string } }) {
-  const currentCategory = searchParams?.category || 'all';
+  const currentCategory = (await searchParams)?.category || 'all';
   const products = await getProducts(currentCategory);
 
   return (
     <div className="container py-12 md:py-20">
       <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">Our Blank Rug Products</h1>
       <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-10">
-        Choose the perfect blank canvas for your custom rug design with EuroserPOD. We offer a variety of shapes, sizes, and materials, ready for your unique print.
+        Choose the perfect blank canvas for your custom rug design with EUROSER. We offer a variety of shapes, sizes, and materials, ready for your unique print.
       </p>
 
       <Tabs defaultValue={currentCategory} className="w-full">

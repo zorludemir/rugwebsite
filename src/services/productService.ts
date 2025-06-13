@@ -3,20 +3,18 @@ import type { Product, ProductSize } from '@/types/product';
 // Prices per square meter for each product model
 const pricesPerSqMeter: Record<string, number> = {
   'damla': 74.82,
+  'bukle': 68.73,
   'bulut': 64.19,
   'puffy': 47.01,
-  'venus': 43.70,
+  'okyanus': 43.70,
   'bambu': 43.70,
   'garden': 45.77,
-  'sonil': 23.84, // Şönil
+  'sonil': 23.84,
   'inci': 23.94,
   'goblen': 39.37,
   'elegant': 56.45,
-  'bukle': 50.00, // Example price
-  'ekobambu': 55.00, // Example price
-  'okyanus': 60.00, // Example price
-  'rubbermat': 30.00, // Example price
-  'towel': 35.00, // Example price
+  'eco-bamboo': 45.00,
+  'rubber-mat': 20.00, // Example price for rubber mat
 };
 
 // Helper function to calculate area from dimensions string "WIDTHxHEIGHT cm"
@@ -30,7 +28,7 @@ function calculateAreaInSqM(dimensions: string): number {
 }
 
 // Raw product data without pre-calculated prices
-const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, 'priceModifier'>[] })[] = [
+const rawProductData: (Omit<Product, 'basePrice'> & { id: string; sizes: Omit<ProductSize, 'priceModifier'>[] })[] = [
   {
     id: 'damla-rug',
     slug: 'damla',
@@ -42,10 +40,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/damla/damla3.jpg',
     ],
     sizes: [
-      { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'damla-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'damla-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'damla-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'damla-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'damla-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'damla-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'damla-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'damla-80x150',
     material: 'Jute & Cotton Base',
@@ -71,10 +69,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/bulut/bulut3.jpg',
     ],
     sizes: [
-      { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'bulut-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'bulut-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'bulut-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'bulut-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'bulut-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'bulut-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'bulut-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'bulut-80x150',
     material: 'Jute & Cotton Base',
@@ -100,10 +98,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/puffy/puffy3.jpg',
     ],
     sizes: [
-      { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'puffy-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'puffy-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'puffy-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'puffy-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'puffy-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'puffy-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'puffy-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'puffy-80x150',
     material: 'Non-slip Polyester Base',
@@ -128,10 +126,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/bambu/bambu3.jpg',
     ],
     sizes: [
-      { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'bambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'bambu-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'bambu-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'bambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'bambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'bambu-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'bambu-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'bambu-80x150',
     material: 'Non-slip Polyester Base',
@@ -156,10 +154,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/garden/garden3.jpg',
     ],
     sizes: [
-      { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'garden-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'garden-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'garden-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'garden-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'garden-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'garden-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'garden-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'garden-80x150',
     material: 'Felt Base',
@@ -184,10 +182,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/sonil/sonil3.jpg',
     ],
     sizes: [
-      { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'sonil-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'sonil-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'sonil-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'sonil-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'sonil-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'sonil-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'sonil-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'sonil-80x150',
     material: 'Non-slip Cotton Base',
@@ -212,10 +210,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/inci/inci3.jpg',
     ],
     sizes: [
-      { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'inci-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'inci-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'inci-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'inci-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'inci-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'inci-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'inci-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'inci-80x150',
     material: 'Non-slip Polyester Base',
@@ -240,10 +238,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/goblen/goblen3.jpg',
     ],
     sizes: [
-      { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'goblen-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'goblen-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'goblen-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'goblen-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'goblen-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'goblen-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'goblen-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'goblen-80x150',
     material: 'Non-slip Thermo Base',
@@ -268,10 +266,10 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/elegant/elegant3.jpg',
     ],
     sizes: [
-      { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'elegant-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-      { id: 'elegant-150x200', label: '150x200 cm', dimensions: '150cm x 200cm' },
-      { id: 'elegant-160x230', label: '160x230 cm', dimensions: '160cm x 230cm' },
+      { id: 'elegant-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'elegant-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'elegant-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'elegant-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'elegant-80x150',
     material: 'Thermo Non-slip Base',
@@ -289,91 +287,120 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
     id: 'bukle-rug',
     slug: 'bukle',
     name: 'Bukle',
-    description: 'Bukle rug with a soft texture and durable material.',
+    description: 'Bukle rug featuring 750,000 loops, 7 mm pile height, and a Jute & Cotton base. Weighs 2,000 gr/m².',
     images: [
       '/img/bukle/bukle1.jpg',
       '/img/bukle/bukle2.jpg',
+      '/img/bukle/bukle3.jpg',
     ],
     sizes: [
-      { id: 'bukle-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'bukle-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'bukle-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'bukle-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'bukle-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'bukle-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'bukle-80x150',
-    material: 'Durable Material',
+    material: 'Jute & Cotton Base',
     shape: 'Rectangular',
     category: 'rectangular',
-    features: ['Soft Texture', 'Durable Material'],
-    careInstructions: 'Vacuum regularly.',
+    features: [
+      '750,000 Loops',
+      '7 mm Pile Height',
+      '2,000 gr/m² Weight',
+      'Jute & Cotton Base',
+    ],
+    careInstructions: 'Vacuum regularly. Professional cleaning recommended for deep stains.',
     aiHint: 'Bukle rug',
   },
   {
-    id: 'ekobambu-rug',
-    slug: 'ekobambu',
-    name: 'Eko Bambu',
-    description: 'Eco-friendly bamboo rug with a natural finish.',
+    id: 'eco-bamboo-rug',
+    slug: 'eco-bamboo',
+    name: 'Eco Bamboo',
+    description: 'Eco Bamboo rug with a 5 mm pile height and a Non-slip Polyester base. Weighs 900 gr/m².',
     images: [
       '/img/ekobambu/ekobambu1.jpg',
       '/img/ekobambu/ekobambu2.jpg',
+      '/img/ekobambu/ekobambu3.jpg',
     ],
     sizes: [
-      { id: 'ekobambu-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'ekobambu-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'eco-bamboo-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'eco-bamboo-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'eco-bamboo-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'eco-bamboo-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
-    defaultSizeId: 'ekobambu-80x150',
-    material: 'Bamboo',
+    defaultSizeId: 'eco-bamboo-80x150',
+    material: 'Non-slip Polyester Base',
     shape: 'Rectangular',
     category: 'rectangular',
-    features: ['Eco-friendly', 'Natural Finish'],
-    careInstructions: 'Wipe with a damp cloth.',
-    aiHint: 'Eco bamboo rug',
+    features: [
+      '5 mm Pile Height',
+      '900 gr/m² Weight',
+      'Non-slip Polyester Base',
+    ],
+    careInstructions: 'Vacuum regularly. Spot clean with mild detergent.',
+    aiHint: 'Eco Bamboo rug',
+  },
+  {
+    id: 'rubber-mat',
+    slug: 'rubber-mat',
+    name: 'Rubber Mat',
+    description: 'Rubber Mat with a PVC base, non-slip features, durable and easy to clean.',
+    images: [
+      '/img/rubbermat/rubbermat1.jpg',
+      '/img/rubbermat/rubbermat2.jpg',
+      '/img/rubbermat/rubbermat3.jpg',
+    ],
+    sizes: [
+      { id: 'rubber-mat-50x80', label: '50x80 cm', dimensions: '50cm x 80cm', priceModifier: 1.0 },
+      { id: 'rubber-mat-60x90', label: '60x90 cm', dimensions: '60cm x 90cm', priceModifier: 1.2 },
+      { id: 'rubber-mat-80x120', label: '80x120 cm', dimensions: '80cm x 120cm', priceModifier: 1.5 },
+    ],
+    defaultSizeId: 'rubber-mat-50x80',
+    material: 'PVC Base',
+    shape: 'Rectangular',
+    category: 'rectangular',
+    features: [
+      'Non-slip PVC Base',
+      'Easy to Clean',
+      'Durable Material',
+    ],
+    careInstructions: 'Wipe with a damp cloth. Avoid using harsh chemicals.',
+    aiHint: 'Rubber Mat PVC base',
   },
   {
     id: 'okyanus-rug',
     slug: 'okyanus',
     name: 'Okyanus',
-    description: 'Okyanus rug with a wave-like pattern and vibrant colors.',
+    description: 'Okyanus rug featuring 480,000 loops, 8 mm pile height, and a Jute & Cotton base. Weighs 2,100 gr/m².',
     images: [
       '/img/okyanus/okyanus1.jpg',
       '/img/okyanus/okyanus2.jpg',
+      '/img/okyanus/okyanus3.jpg',
     ],
     sizes: [
-      { id: 'okyanus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'okyanus-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
+      { id: 'okyanus-80x150', label: '80x150 cm', dimensions: '80cm x 150cm', priceModifier: 1.0 },
+      { id: 'okyanus-100x200', label: '100x200 cm', dimensions: '100cm x 200cm', priceModifier: 1.2 },
+      { id: 'okyanus-150x200', label: '150x200 cm', dimensions: '150cm x 200cm', priceModifier: 1.5 },
+      { id: 'okyanus-160x230', label: '160x230 cm', dimensions: '160cm x 230cm', priceModifier: 1.8 },
     ],
     defaultSizeId: 'okyanus-80x150',
-    material: 'Polyester',
+    material: 'Jute & Cotton Base',
     shape: 'Rectangular',
     category: 'rectangular',
-    features: ['Wave-like Pattern', 'Vibrant Colors'],
-    careInstructions: 'Spot clean only.',
-    aiHint: 'Wave pattern rug',
+    features: [
+      '480,000 Loops',
+      '8 mm Pile Height',
+      '2,100 gr/m² Weight',
+      'Jute & Cotton Base',
+    ],
+    careInstructions: 'Vacuum regularly. Professional cleaning recommended for deep stains.',
+    aiHint: 'Okyanus rug',
   },
   {
-    id: 'rubbermat-rug',
-    slug: 'rubbermat',
-    name: 'Rubber Mat',
-    description: 'Durable rubber mat for indoor and outdoor use.',
-    images: [
-      '/img/rubbermat/rubbermat1.jpg',
-      '/img/rubbermat/rubbermat2.jpg',
-    ],
-    sizes: [
-      { id: 'rubbermat-80x150', label: '80x150 cm', dimensions: '80cm x 150cm' },
-      { id: 'rubbermat-100x200', label: '100x200 cm', dimensions: '100cm x 200cm' },
-    ],
-    defaultSizeId: 'rubbermat-80x150',
-    material: 'Rubber',
-    shape: 'Rectangular',
-    category: 'rectangular',
-    features: ['Durable', 'Non-slip'],
-    careInstructions: 'Wash with water.',
-    aiHint: 'Rubber mat',
-  },
-  {
-    id: 'towel-product',
+    id: 'towel-rug',
     slug: 'towel',
     name: 'Towel',
-    description: 'High-quality towel with soft texture and excellent absorbency.',
+    description: 'Towel rug featuring soft and absorbent material, perfect for bathrooms and kitchens.',
     images: [
       '/img/towel/towel1.jpg',
       '/img/towel/towel2.jpg',
@@ -381,84 +408,63 @@ const rawProductData: (Omit<Product, 'basePrice'> & { sizes: Omit<ProductSize, '
       '/img/towel/towel4.jpg',
     ],
     sizes: [
-      { id: 'towel-50x100', label: '50x100 cm', dimensions: '50cm x 100cm' },
-      { id: 'towel-70x140', label: '70x140 cm', dimensions: '70cm x 140cm' },
-      { id: 'towel-100x180', label: '100x180 cm', dimensions: '100cm x 180cm' },
+      { id: 'towel-50x80', label: '50x80 cm', dimensions: '50cm x 80cm', priceModifier: 1.0 },
+      { id: 'towel-60x90', label: '60x90 cm', dimensions: '60cm x 90cm', priceModifier: 1.2 },
+      { id: 'towel-80x120', label: '80x120 cm', dimensions: '80cm x 120cm', priceModifier: 1.5 },
     ],
-    defaultSizeId: 'towel-50x100',
-    material: 'Cotton',
+    defaultSizeId: 'towel-50x80',
+    material: 'Soft Absorbent Material',
     shape: 'Rectangular',
     category: 'rectangular',
     features: [
-      'Soft Texture',
-      'Excellent Absorbency',
+      'Soft and Absorbent',
+      'Perfect for Bathrooms and Kitchens',
       'Durable Material',
     ],
-    careInstructions: 'Machine wash warm. Tumble dry low.',
-    aiHint: 'Towel product',
+    careInstructions: 'Machine washable. Avoid using bleach.',
+    aiHint: 'Towel rug soft absorbent',
   },
 ];
 
-const mockProducts: Product[] = rawProductData.map(p_raw => {
-  const productData = p_raw as any; // Cast to any to allow adding properties
-  const pricePerSqM = pricesPerSqMeter[productData.slug];
-  if (pricePerSqM === undefined) {
-    console.warn(`Price per SqM not found for product ${productData.slug}. Prices will be incorrect.`);
-  }
+// Adding the getProductBySlug function
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const products = await getProducts('all');
+  return products.find(product => product.slug === slug) || null;
+}
 
-  const defaultSizeEntry = productData.sizes.find((s: any) => s.id === productData.defaultSizeId) || productData.sizes[0];
-  if (!defaultSizeEntry) {
-    throw new Error(`Default size not found for product ${productData.slug}`);
-  }
-  const defaultSizeArea = calculateAreaInSqM(defaultSizeEntry.dimensions);
-  const calculatedBasePrice = defaultSizeArea * (pricePerSqM || 0);
-
-  const calculatedSizes: ProductSize[] = productData.sizes.map((size: any) => {
-    const sizeArea = calculateAreaInSqM(size.dimensions);
-    const sizePrice = sizeArea * (pricePerSqM || 0);
-    const priceModifier = sizePrice - calculatedBasePrice;
+// Adding the getProducts function
+export async function getProducts(category: string): Promise<Product[]> {
+  const allProducts: Product[] = rawProductData.map((rawProduct) => {
+    const basePrice = pricesPerSqMeter[rawProduct.slug] * calculateAreaInSqM(rawProduct.sizes[0].dimensions);
     return {
-      ...size,
-      priceModifier: priceModifier,
+      ...rawProduct,
+      basePrice,
+      sizes: rawProduct.sizes.map((size) => ({
+        ...size,
+        priceModifier: size.priceModifier || 0,
+      })),
     };
   });
 
-  return {
-    ...productData,
-    basePrice: calculatedBasePrice,
-    sizes: calculatedSizes,
-  } as Product;
-});
-
-
-// Simulate API delay
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-export async function getProducts(category?: string): Promise<Product[]> {
-  await delay(300); // Simulate network latency
-  if (category && category !== 'all') {
-    return mockProducts.filter(product => product.category === category);
+  if (category === 'all') {
+    return allProducts;
   }
-  return mockProducts;
+
+  return allProducts.filter((product) => product.category === category);
 }
 
-export async function getProductBySlug(slug: string): Promise<Product | null> {
-  await delay(300); // Simulate network latency
-  const product = mockProducts.find(p => p.slug === slug);
-  return product || null;
-}
-
-export async function getAllProductSlugs(): Promise<string[]> {
-    await delay(100);
-    return mockProducts.map(p => p.slug);
-}
-
+// Adding the productCategories export
 export const productCategories = [
+  { value: 'rectangular', label: 'Rectangular Rugs' },
+  { value: 'round', label: 'Round Rugs' },
+  { value: 'runner', label: 'Runner Rugs' },
+  { value: 'shag', label: 'Shag Rugs' },
   { value: 'all', label: 'All Rugs' },
-  { value: 'rectangular', label: 'Rectangular' },
-  // Kept other categories in case they are used or data changes later
-  { value: 'round', label: 'Round' },
-  { value: 'runner', label: 'Runners' },
-  { value: 'shag', label: 'Shag Rugs'}
 ];
+
+// Adding the getAllProductSlugs function
+export async function getAllProductSlugs(): Promise<string[]> {
+  const products = await getProducts('all');
+  return products.map(product => product.slug);
+}
 

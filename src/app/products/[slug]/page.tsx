@@ -1,14 +1,14 @@
 import { getProductBySlug, getAllProductSlugs } from '@/services/productService';
-import type { Product, ProductSize } from '@/types/product';
 import ImageGallery from '@/components/products/ImageGallery';
 import SizePriceSelectorClient from './SizePriceSelectorClient'; // Client component wrapper
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, Package, ShieldCheck } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Metadata, ResolvingMetadata } from 'next';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode, Key } from 'react';
 
 type Props = {
   params: { slug: string };
@@ -18,7 +18,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const product = await getProductBySlug(params.slug);
+  const product = await getProductBySlug((await params).slug);
 
   if (!product) {
     return {
@@ -29,10 +29,10 @@ export async function generateMetadata(
 
   return {
     title: `${product.name} | EuroserPOD`,
-    description: product.description.substring(0, 160), // Keep it concise for meta description
+    description: `${product.name} - ${(product.features ?? []).join(', ')}. Perfect for custom designs and high-quality printing.`,
     openGraph: {
       title: product.name,
-      description: product.description,
+      description: `${product.name} - ${(product.features ?? []).join(', ')}. Perfect for custom designs and high-quality printing.`,
       images: product.images.length > 0 ? [product.images[0]] : [],
     },
   };
@@ -40,13 +40,13 @@ export async function generateMetadata(
 
 export async function generateStaticParams() {
   const slugs = await getAllProductSlugs();
-  return slugs.map((slug) => ({
+  return slugs.map((slug: any) => ({
     slug,
   }));
 }
 
 export default async function ProductDetailPage({ params }: Props) {
-  const product = await getProductBySlug(params.slug);
+  const product = await getProductBySlug((await params).slug);
 
   if (!product) {
     return (
@@ -85,41 +85,12 @@ export default async function ProductDetailPage({ params }: Props) {
           </p>
 
           {/* Client component for size selection and price updates */}
-          
-
-          {product.features && product.features.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">Key Features</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
-
-          {product.careInstructions && (
-             <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">Care Instructions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{product.careInstructions}</p>
-              </CardContent>
-            </Card>
-          )}
           <SizePriceSelectorClient 
             basePrice={product.basePrice} 
             sizes={product.sizes}
             defaultSizeId={product.defaultSizeId}
           />
+
           <div className="pt-4">
              <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Add to Quote Request (Print Design)</Button>
              <p className="text-xs text-muted-foreground mt-2 text-center">

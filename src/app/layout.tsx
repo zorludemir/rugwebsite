@@ -17,8 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'EuroserPOD | Custom Rug Printing',
-  description: 'High-quality custom printing on blank rugs. Design your own rug with EuroserPOD.',
+  title: 'EUROSER | Custom Rug Printing',
+  description: 'High-quality custom printing on blank rugs. Design your own rug with EUROSER.',
+  metadataBase: new URL('http://localhost:9002'),
 };
 
 export default function RootLayout({
